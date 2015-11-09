@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="">
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="Realiza la búsqueda de casa, departamento que deseas de tu gusto">
+        <meta name="author" content="Ivan Romero Garcia">
+        <meta name="keywords" content="casas, departamentos, renta, venta, pensión">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Conform House</title>
+        <link rel="stylesheet" href="css/styleindex.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/style.css">
+        <script type="text/javascript" src="js/jquery-1.11.2.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/angular.min.js"></script>
+        <script type="text/javascript" src="js/angular-route.min.js"></script>
+        <script type="text/javascript" src="js/jquery.cookie.js"></script>
+        <script type="text/javascript" src="js/jquery.paginate.js"></script>
+        <script type="text/javascript" src="js/funciones.js"></script>
+        <script type="text/javascript" src="js/sesion.js"></script>
+        <script type="text/javascript" src="js/peticiones.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+    </head>
+    <body data-spy="scroll" data-target=".navbar" data-offset="50">
+
+<!--Secion de Encabezado de la paguina-->
+        <header class="encabezado imageBac" >
+            <nav class="navbar navbar-default center" data-spy="affix" data-offset-top="197" >
+                <div class="container-fluid buscador">
+                    <div class="navbar-header  ">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="http://localhost/index.html" ><p class="letras">WebSiteName</p></a>
+                    </div>
+                <div>
+                    <div class="collapse navbar-collapse" id="myNavbar">
+                        <form id="formularioBusqueda" class="navbar-form navbar-left" role="search">
+                            <div class="form-group">
+                                <select name="inmueble" class="form-control" required="required">
+                                    <option value="None">--Tipo de Inmobiliario</option>
+                                    <option value="Casa">Casa</option>
+                                    <option value="Departamento">Departamento</option>
+                                    <option value="Cuarto">Cuarto</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select name="oferta" class="form-control" required="required">
+                                    <option value="0">--Oferta</option>
+                                    <option value="1">Renta</option>
+                                    <option value="2">Venta</option>
+                                    <option value="3">Pension</option>
+                                    <option value="4">A tratar</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input name="colonia" type="text" class="form-control" placeholder="Colonia, municipio">
+                            </div>
+                            <button id="busqueda" type="submit" class="btn btn-default">Buscar</button>
+                        </form>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <span class="glyphicon glyphicon-user dropdown-toggle icon" data-toggle="dropdown">
+                                <span class="caret"></span>
+                                </span>
+                                <ul class="dropdown-menu">
+                                    <li class="menu1"><a href="login.html">Entrar</a></li>
+                                    <li class="divider menu1"></li>
+                                    <li class="menu1"><a href="registro.html">Registrate</a></li>
+                                    <li  id="publica" class="menu2"><a href="user.html">Publica</a></li>
+                                    <li class="divider menu2"></li>
+	                                <li  id="favoritos" class="menu2"><a href="user.html">Favoritos</a></li>
+                                    <li class="divider menu2"></li>
+                                    <li  id="anuncios" class="menu2"><a href="user.html">Mis Anuncios</a></li>
+                                    <li class="divider menu2"></li>
+                                    <li id="notificaciones" class="menu2"><a href="user.html">Notificaciones</a></li>
+                                    <li class="divider menu2"></li>
+                                    <li class="menu2"><a href="index.html" id="cerrar">Salir</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                </div>
+            </nav>
+        </header>
+<!--Fin de la seccion del Encabezado de la paguina-->
+        <div class="container-fluid">
+            <div class="row" >
+<!---Aside de filtros de busqueda de la pagina extraido de una plantilla---->
+                <aside id="asi" ng-include src="'asiizq.html'">
+
+                </aside>
+
+<!---Section de la paguina---->
+                <section >
+
+<!--div que va contener la informacion de los inmuebles-->
+                    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 contenido">
+                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                            <img class="img-responsive" src="img/ciudad.jpg" alt="Chania">
+                        </div>
+                        <div class="col-xs-12 col-sm-8 col-md-1 col-lg-8">
+                            <p>Descripcion:</p><p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit,                             sed do eiusmod tempor
+                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                            nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+                            culpa qui officia deserunt mollit anim id est laborum.
+                            </p>
+                            <p>Precio:</p>
+                            <button type="button" class="btn btn-default">Ver mas...</button>
+
+
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                            <img class="img-responsive" src="img/ciudad.jpg" alt="Chania">
+                        </div>
+                        <div class="col-xs-8 col-sm-8 col-md-1 col-lg-8">
+                            <p>Descripcion:</p><p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit,                             sed do eiusmod tempor
+                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                            nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+                            culpa qui officia deserunt mollit anim id est laborum.
+                            </p>
+                            <p>Precio:</p>
+                            <button type="button" class="btn btn-default">Ver mas...</button>
+
+
+                        </div>
+                    </div>
+
+<!--div que va contener las paguinaciones de la paguina-->
+                    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                        <div id="paginacion" class="col-sm-offset-1 col-md-offset-3">
+
+                        </div>
+                    </div>
+
+                </section>
+<!--Fin dela seccion de la pagina-->
+            </div>
+        </div>
+
+<!--Footer es extraido del archivo de una de las plantillas-->
+        <footer id="foot" class="row" ng-include src="'footer.html'">
+
+        </footer>
+
+<!--Con este script me permite integrar plantillas a mi paguina html con angularjs-->
+        <script>
+            var miAPlicacion = angular.module('include',[]);
+        </script>
+
+    </body>
+</html>

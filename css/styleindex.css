@@ -1,0 +1,96 @@
+/*----reseto basico de la pagina----*/
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.letras{
+    color: white;
+}
+/*--------------Header--------------------------*/
+.affix ~ .container-fluid {
+     position: relative;
+     top: 80px;
+}
+
+.affix {
+      top:0px;
+      width: 100%;
+      z-index: 9999 !important;
+      background: white;
+}
+
+.buscador{
+    background: -webkit-linear-gradient(left, rgba( 150, 22, 22, 0.964 ),rgba( 54, 53, 53, 0.964 ) ,rgba( 227, 68, 68, 0.964 ));
+}
+
+/*------------Aside de la paguina web--------*/
+#asi{
+    background: rgba( 183, 178, 178, 0.433 );
+    margin: 4px 0px 10px 4px;
+}
+
+.celda{
+    border: solid 1px black;
+    border-left: 0px;
+    border-right: 0px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+#foot{
+    margin-top: 30px;
+    padding: 50px;
+    background:black;
+    color: white;
+}
+
+
+
+
+
+@media screen and (min-width: 481px) {
+.center{
+      margin: 0 auto;
+      width: 90%;
+      position: relative;
+      top: 120px;
+}
+
+.affix ~ .container-fluid {
+     position: relative;
+     top: 80px;
+}
+
+.affix {
+      top:0px;
+      width: 100%;
+      z-index: 9999 !important;
+      background: white;
+}
+.imageBac{
+	position:relative;
+	background: url('../img/ciudad.jpg') no-repeat fixed;
+	background-position: bottom;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	min-height: 300px;
+}
+
+.encabezado{
+    height: 10px;
+}
+
+.navbar {
+      margin-bottom: 0px;
+}
+
+.icon {
+	color:white;
+    margin-top:10px;
+    font-size:25px;
+}
+}
+

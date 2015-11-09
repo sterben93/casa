@@ -1,0 +1,30 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.letras{
+    color: white;
+}
+
+#contacto{
+    text-align: center;
+    background: rgba( 183, 178, 178, 0.433 );
+    margin: auto;
+    margin-top: 70px;
+    padding-bottom: 20px;
+    position: static;
+}
+
+.imagen{
+    display: block;
+    margin: auto;
+    position: relative;
+    top:-53px;
+    min-height: 10px;
+}
+
+.contenido{
+    background: rgba( 183, 178, 178, 0.433 );
+    margin: 10px;
+}
