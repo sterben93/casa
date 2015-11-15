@@ -67,7 +67,7 @@ class APIUsuario {
 
         try {
             $user->signUp();
-            return 'Usuario reguistrado';
+            return 'Usuario registrado';
         } catch (ParseException $ex) {
             if ($ex->getCode() == 203) {
                 return "La direccion email " . $usuario->getEmail() . " ya esta ocupada";
@@ -93,6 +93,14 @@ class APIUsuario {
             return "Usuario borrado";
         }
         return $user;
+    }
+    public static function reiniciarContraseña($email){
+        try {
+            ParseUser::requestPasswordReset($email);
+            return true;
+        } catch (ParseException $ex) {
+            return false;
+        }
     }
 
 }

@@ -74,7 +74,7 @@ class APIInmueble {
         $imagen = $query->first();
         $imgId = $imagen->get('imagenId')->getObjectId();
 
-        $queryImage = new ParseQuery('Imagenes');
+        $queryImage = new ParseQuery('Imagenes'); //esto era innecesario, bastaba llamar a imgId->fetch (sin antes llamar a getObjectId para obtener $object
         $queryImage->equalTo("objectId", $imgId);
         $object = $queryImage->first();
         $urlImg = $object->get('imagen')->getUrl();
@@ -82,7 +82,7 @@ class APIInmueble {
     }
 
     /**
-    *
+    * 
     * @param type $id
     * @return type
     */
@@ -150,7 +150,7 @@ class APIInmueble {
 
         }
     }
-
+    
     /**
      * [[Description]]
      * @param [[Type]] $inmueble [[Description]]
@@ -159,7 +159,55 @@ class APIInmueble {
     public function registraImgIn($inmueble, $imagenes) {
 
     }
-
+    /**
+     * use este metodo para pasar las imagenes de la tabla ImagenesDelInmueble, 
+     * a la relacion que esta en la tabla inmueble, columna imagenes
+     */
+    public static function migrarImagenes(){
+        $queryInmuebles= new ParseQuery("Inmueble");
+        $inmuebles= $queryInmuebles->find();
+        $fin=count($inmuebles);
+        for($i=0;$i <$fin;$i++){
+            echo "Inmueble: ". $inmuebles[$i]->get("direccion")." tiene imagen:<br>";
+            Inmueble::migrarImagenesInmueble($inmuebles[$i]);
+        }
+    }
+    public static function migrarImagenesInmueble($inmueble){
+        $queryTabla= new ParseQuery("ImagenesDelInmueble");
+        $queryTabla ->equalTo("inmuebleId",$inmueble);
+        $imagenes= $queryTabla->find();
+        $fin=count($imagenes);
+        $relacion= $inmueble->getRelation("imagenes");
+        
+        for($i=0;$i<$fin;$i++){
+            $imagId = $imagenes[$i]->get("imagenId");
+            $imagId ->fetch();
+            
+            
+            $relacion->add($imagId);
+            //muestra
+            $imagen= $imagId ->get("imagen");
+            echo "<img src= ".$imagen->getUrl(). "> <br>";
+        }
+        $inmueble->save();
+    }
+    /**
+     * Este metodo no esta terminado, tiene un error, pero se supone que devolvera
+     * las imagenes del inmueble dado.
+     * @param type $inmueble
+     */
+    public function getImagenesInmueble($inmueble){
+        $relation =  $inmueble ->getRelation("imagen");
+        $relation->setTargetClass('imagenes'); //se supone que esto es necesario, asi lo lei en stackoverflow, pero no se que poner
+        $query = $relation ->getQuery();
+        
+        $imagenes= $query->find();
+        $fin= count($imagenes);
+        for($i=0;$i< $fin;$i++){
+            echo "<img src= " . $imagenes[$i]->getUrl(). " > <br>";
+        }
+        
+    }
 }
 echo 'hola';
 ?>
