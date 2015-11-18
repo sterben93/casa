@@ -64,11 +64,19 @@ class APIInmueble {
     }
 
     /**
-     *
+     * Devuelve una sola imagen de un inmueble, la primera.
      * @param type $inmueble
-     * @return type
+     * @return string $url
      */
-    public function urlImagen($inmueble) {
+    
+    public function urlImagen($inmueble){
+        $relation =  $inmueble ->getRelation("imagenes");
+        $query = $relation ->getQuery(); 
+        $imagen= $query->first();
+        $imag= $imagen->get("imagen");
+        return $imag->getUrl();
+    }
+    /*public function urlImagen($inmueble) {
         $query = new ParseQuery('ImagenesDelInmueble');
         $query->equalTo("inmuebleId", $inmueble);
         $imagen = $query->first();
@@ -79,8 +87,28 @@ class APIInmueble {
         $object = $queryImage->first();
         $urlImg = $object->get('imagen')->getUrl();
         return $urlImg;
+    }*/
+    /**
+     * Devuelve todas las imagenes asociadas con un inmueble, 
+     * las devuelve en un arreglo de URLs.
+     * @param type $inmueble
+     * @return type
+     */
+    public function urlImagenes($inmueble){
+        $relation =  $inmueble ->getRelation("imagenes");
+        $query = $relation ->getQuery(); 
+        $imagenes= $query->find();
+        $fin= count($imagenes);
+        $resp=[];
+        for($i=0;$i< $fin;$i++){
+            $imag= $imagenes[$i]->get("imagen");
+            $resp[]=$imag->getUrl();
+        }
+        /*for($i=0;$i< $fin;$i++){
+            echo "<img src= " . $resp[$i]. " > <br>";
+        }*/
+        return $resp;
     }
-
     /**
     * 
     * @param type $id
@@ -190,23 +218,6 @@ class APIInmueble {
             echo "<img src= ".$imagen->getUrl(). "> <br>";
         }
         $inmueble->save();
-    }
-    /**
-     * Este metodo no esta terminado, tiene un error, pero se supone que devolvera
-     * las imagenes del inmueble dado.
-     * @param type $inmueble
-     */
-    public function getImagenesInmueble($inmueble){
-        $relation =  $inmueble ->getRelation("imagen");
-        $relation->setTargetClass('imagenes'); //se supone que esto es necesario, asi lo lei en stackoverflow, pero no se que poner
-        $query = $relation ->getQuery();
-        
-        $imagenes= $query->find();
-        $fin= count($imagenes);
-        for($i=0;$i< $fin;$i++){
-            echo "<img src= " . $imagenes[$i]->getUrl(). " > <br>";
-        }
-        
     }
 }
 echo 'hola';
