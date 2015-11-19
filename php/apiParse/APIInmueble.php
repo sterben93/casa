@@ -200,7 +200,7 @@ class APIInmueble {
             Inmueble::migrarImagenesInmueble($inmuebles[$i]);
         }
     }
-    public static function migrarImagenesInmueble($inmueble){
+    private static function migrarImagenesInmueble($inmueble){
         $queryTabla= new ParseQuery("ImagenesDelInmueble");
         $queryTabla ->equalTo("inmuebleId",$inmueble);
         $imagenes= $queryTabla->find();
@@ -217,6 +217,20 @@ class APIInmueble {
             $imagen= $imagId ->get("imagen");
             echo "<img src= ".$imagen->getUrl(). "> <br>";
         }
+        $inmueble->save();
+    }/**
+     * Agrega la $imagen a el $inmueble dado, usando el campo de relacion 
+     * (no la tabla de punteros).
+     * @param type $inmueble
+     * @param type $imagen
+     */
+    public function agregaImagenAInmueble($inmueble, $imagen){
+        //$consulta= new ParseQuery("Inmueble"); //este es un ejemplo de como agregar una imagen.
+        //$inmueble = $consulta->get("Wkz7fvW6qG");
+        //$consulta= new ParseQuery("Imagenes");
+        //$imagen= $consulta->first();        
+        $relacion= $inmueble->getRelation("imagenes");
+        $relacion->add($imagen);
         $inmueble->save();
     }
 }
