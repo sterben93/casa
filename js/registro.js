@@ -7,18 +7,24 @@
  */
 $(document).ready(function (){
 	sesion();
-    texto='{"numero":"2",';
+    texto='"numero":"3",';
     $('#enviar').click(function (){
+        texto='{"numero":"3",'
         $('input').each(function(idx, input) {
             texto+='"'+input.id+'":"'+input.value+'",';
         });
         texto+='"'+$('select').attr('id')+'":"'+$('select').val()+'"}';
         json=JSON.parse(texto);
         ajaxPHP('http://localhost/apiParse/WebServicesUsuario.php',json,regUsuario);
-        alert(json);
     });
 });
 
 function regUsuario(json){
-
+    if(json.reg==1){
+        alert(json.mensaje);
+        window.location.href='index.html';
+        window.location.reload;
+    }else{
+        alert(json.mensaje);
+    }
 }
