@@ -6,8 +6,7 @@ $(document).ready(function (){
         usuario=$("#usuario").val();
         password=$("#password").val();
         json={'numero':1,'usuario':usuario,'password':password};
-        funcion=inicioSesion;
-        ajaxPHP('http://localhost/apiParse/WebServicesUsuario.php',json,funcion);
+        ajaxPHP('http://localhost/apiParse/WebServicesUsuario.php',json,inicioSesion);
     });
 });
 

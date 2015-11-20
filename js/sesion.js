@@ -25,7 +25,6 @@ function sesion(){
     $('#anuncios').click(function (){crearCookie('anun')});
     $('#notificaciones').click(function (){crearCookie('noti')});
     $('#cerrar').click(function (){
-
         ajaxPHP('http://localhost/apiParse/WebServicesUsuario.php',{numero:2},cerrarSesion);
         menu1.show();
         menu2.hide();
