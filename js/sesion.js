@@ -24,10 +24,9 @@ function sesion(){
     $('#favoritos').click(function (){crearCookie('fav')});
     $('#anuncios').click(function (){crearCookie('anun')});
     $('#notificaciones').click(function (){crearCookie('noti')});
-
     $('#cerrar').click(function (){
-        $removeCookie('sesion');
-        ajaxPHP('http://localhost/apiParse/WebServicesUsuario.php',{numero:2});
+
+        ajaxPHP('http://localhost/apiParse/WebServicesUsuario.php',{numero:2},cerrarSesion);
         menu1.show();
         menu2.hide();
     });
@@ -40,7 +39,6 @@ function sesion(){
 function crearCookie(bton){
     boton[bton]();
 }
-
 
 /*Objeto boton que simula un switch*/
 boton={
@@ -59,5 +57,16 @@ boton={
     'noti':function(){
         $cookie('pestana','noti');
         alert($cookie('pestana'));
+    }
+}
+
+function cerrarSesion(json){
+    if(json.sesion==1){
+        $removeCookie('sesion');
+        $removeCookie('id');
+        window.location.href="index.html";
+        window.location.reload;
+    }else{
+        alert(json.error);
     }
 }
