@@ -1,8 +1,11 @@
+/* global $cookie */
+/* global $ */
 
+$(document).ready(crearContenido);
 
 function crearContenido() {
     var idCasa =$cookie('idCasa')
-    ajaxPHP('',{'numero':'','id':idCasa},llenarContenido);
+    ajaxPHP('http://localhost/apiParse/WebServicesInmueble.php',{'numero':'','id':idCasa},llenarContenido);
 }
 
 function llenarContenido(json) {
