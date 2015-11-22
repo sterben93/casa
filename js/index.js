@@ -6,6 +6,5 @@
 
 $(document).ready(function (){
 	sesion();
-    funcion=construirContenido;
-    ajaxPHP('http://localhost/apiParse/WebServicesInmueble.php',{numero:1,numPage:1, paginacion:true},funcion);
+    ajaxPHP('http://localhost/apiParse/WebServicesInmueble.php',{numero:1,numPage:1,paginacion:true},construirContenido);
 });

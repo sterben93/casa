@@ -1,33 +1,26 @@
-/* global $cookie */
-/* global $removeCookie */
-/* global $ */
-/* global boton */
-/* global menu2 */
-/* global menu1 */
-
 /**
  * La funcion sesion sirve para proporcionarle al usuario las opciones de menu que puede aceder
  * dependiendo del contenido de la cookie sesion.
  */
-function sesion(){
-    menu1= $('.menu1');
-    menu2= $('.menu2');
-    if($cookie('sesion')===undefined){
-        menu1.show();
-        menu2.hide();
-    }else{
-        menu1.hide();
-        menu2.show();
+function sesion() {
+    var $menu1 = $('.menu1');
+    var $menu2 = $('.menu2');
+    if ($cookie('sesion') === undefined) {
+        $menu1.show();
+        $menu2.hide();
+    } else {
+        $menu1.hide();
+        $menu2.show();
     }
 
-    $('#publica').click(function (){crearCookie('pub')});
-    $('#favoritos').click(function (){crearCookie('fav')});
-    $('#anuncios').click(function (){crearCookie('anun')});
-    $('#notificaciones').click(function (){crearCookie('noti')});
-    $('#cerrar').click(function (){
-        ajaxPHP('http://localhost/apiParse/WebServicesUsuario.php',{numero:2},cerrarSesion);
-        menu1.show();
-        menu2.hide();
+    $('#publica').click(function () { crearCookie('pub') });
+    $('#favoritos').click(function () { crearCookie('fav') });
+    $('#anuncios').click(function () { crearCookie('anun') });
+    $('#notificaciones').click(function () { crearCookie('noti') });
+    $('#cerrar').click(function () {
+        ajaxPHP('http://localhost/apiParse/WebServicesUsuario.php', { numero: 2 }, cerrarSesion);
+        $menu1.show();
+        $menu2.hide();
     });
 }
 
@@ -35,37 +28,42 @@ function sesion(){
  * Crea una cookie para decirle a la aplicacion que pestaña activar
  * @param string bton indica que tipo de boton a sido clikeado
  */
-function crearCookie(bton){
+function crearCookie(bton) {
     boton[bton]();
 }
 
 /*Objeto boton que simula un switch*/
-boton={
-    'pub':function(){
-        $cookie('pestana','pub');
+var boton = {
+    'pub': function () {
+        $cookie('pestana', 'pub');
         alert($cookie('pestana'));
     },
-    'fav':function(){
-        $cookie('pestana','fav');
+    'fav': function () {
+        $cookie('pestana', 'fav');
         alert($cookie('pestana'));
     },
-    'anun':function(){
-        $cookie('pestana','anun');
+    'anun': function () {
+        $cookie('pestana', 'anun');
         alert($cookie('pestana'));
     },
-    'noti':function(){
-        $cookie('pestana','noti');
+    'noti': function () {
+        $cookie('pestana', 'noti');
         alert($cookie('pestana'));
     }
 }
 
-function cerrarSesion(json){
-    if(json.sesion==1){
+/**
+ * La funcion Cierra la sesion del usuario actual ademas de elimniar dos cookie
+ * sesion y id del usuario
+ * @param Objeto json
+ */
+function cerrarSesion(json) {
+    if (json.sesion == 1) {
         $removeCookie('sesion');
         $removeCookie('id');
-        window.location.href="index.html";
+        window.location.href = "index.html";
         window.location.reload;
-    }else{
+    } else {
         alert(json.error);
     }
 }

@@ -6,8 +6,6 @@
  * @author rous
  */
 require './vendor/autoload.php';
-require './modelos/Usuario.php';
-
 
 use Parse\ParseObject;
 use Parse\ParseQuery;
@@ -16,22 +14,31 @@ use Parse\ParseClient;
 
 class APIInmueble {
 
-    private $app_id = 've3SsAciKVt8GwhmLDCzW9rQ6EkPj8ai3pWcp3Is';
-    private $rest_key = 'zt0dVKAQwyRTAOFkfFj5d9jzDWAH9fjaJsUR5fhD';
-    private $master_key = 'QpnJBJkOEp3VmEbcaAX8r6HDixj2wCUNQ42e1c4N';
+    /**
+    * Inicializa la aplicacion de la base de datos de Parse
+    */
+    public static function inicializa() {
+        try {
+            ParseClient::initialize('ve3SsAciKVt8GwhmLDCzW9rQ6EkPj8ai3pWcp3Is', 'zt0dVKAQwyRTAOFkfFj5d9jzDWAH9fjaJsUR5fhD', 'QpnJBJkOEp3VmEbcaAX8r6HDixj2wCUNQ42e1c4N');
+        } catch (ParseException $ex) {
+        }
+    }
 
     /**
-     * Inicializa la aplicacion de la base de datos de Parse
+     * Crea la paginacion de la pagina con respecto a la cantidad de registros
+     * @param type $query
+     * @return objeto json
      */
-    public static function inicializa() {
-        ParseClient::initialize($this->app_id, $this->rest_key, $this->master_key);
+    public function crearPaginacion($query) {
+        try {
+            $count = $query->count();
+        } catch (ParseException $ex) {
+            return json_encode([pag => 'Error en la Base de datos', error => $ex->getMessage()]);
+        }
+        $paguinacion = $count / 10;
+        return json_encode([pag => $paguinacion]);
     }
 
-    public function crearPaginacion($query) {
-        $count = $query->count();
-        $paguinacion = $count / 10;
-        return $paguinacion;
-    }
     /**
      *
      * @param type $numPage
@@ -123,15 +130,14 @@ class APIInmueble {
             direccion => $inmueble->get('direccion'),
             colonia => $inmueble->get('colonia'),
             codigoPostal => $inmueble->get('codigoPostal'),
-            numeroCuartos => $inmueble->get('numeroCuartos'),
-            numeroBanos => $inmueble->get('numeroBanos'),
-            numeroEstacionamientos => $inmueble->get('numeroEstacionamientos'),
-            numeroPlantas => $inmueble->get('numeroPlantas'),
+            cuartos => $inmueble->get('numeroCuartos'),
+            banos => $inmueble->get('numeroBanos'),
+            estacionamientos => $inmueble->get('numeroEstacionamientos'),
+            plantas => $inmueble->get('numeroPlantas'),
             precio => $inmueble->get('precio'),
             descripcion => $inmueble->get('descripcion'),
             fechaPublicacion => $inmueble->get('fechaPublicacion'),
             disponible => $inmueble->get('disponible')
-                //idArrendador checar lo de la realcion
         ];
 
         return $jsonInmueble;

@@ -1,16 +1,4 @@
 <?php
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of APIUsuario
- *
- * @author rous
- */
 require 'vendor/autoload.php';
 require 'modelos/Usuario.php';
 
@@ -21,22 +9,24 @@ use Parse\ParseClient;
 class APIUsuario {
 
     /**
-     * Autentica al usuario y lo convierte en el usuario actual, si la autenticacion
-     * fue exitosa devuelve el usuario, si no, devuelve un mensaje de error.
-     * @param type $usuario el nombre del usuario
-     * @param type $contraseña la contraseña del usuario
-     * @return usuario | string
+     * Inicializa la conexion a la base de datos de Parse
      */
     public static function inicializa() {
         try {
             ParseClient::initialize('ve3SsAciKVt8GwhmLDCzW9rQ6EkPj8ai3pWcp3Is', 'zt0dVKAQwyRTAOFkfFj5d9jzDWAH9fjaJsUR5fhD', 'QpnJBJkOEp3VmEbcaAX8r6HDixj2wCUNQ42e1c4N');
         } catch (ParseException $ex) {
-
+            echo 'Error en Parse';
         }
     }
 
+    /**
+     * Autentica al usuario y lo convierte en el usuario actual, si la autenticacion
+     * fue exitosa devuelve el usuario, si no, devuelve un mensaje de error.
+     * @param type $usuario el nombre del usuario
+     * @param type $contraseña la contraseña del usuario
+     * @return objeto json
+     */
     public static function iniciarSesion($usuario, $contraseña) {
-
         try {
             $user = ParseUser::logIn($usuario, $contraseña);
             return json_encode([logeo => 1, id => $user->getObjectId()]);
@@ -44,7 +34,7 @@ class APIUsuario {
             if ($ex->getCode() == 101) {
                 return json_encode([logeo => 0, error => "Error: El usuario o la contraseña es incorrecta"]);
             } else {
-                return json_encode([logeo => 0, error => "Error: " .$ex->getCode()]);
+                return json_encode([logeo => 0, error => "Error: " . $ex->getCode()]);
             }
         }
     }
@@ -56,7 +46,7 @@ class APIUsuario {
      * @param type $contraseña su contraseña
      * @param type $email el email del usuario
      * @param type $tipo el tipo de usuario (1 persona fisica, 2 persona moral).
-     * @return \ParseUser
+     * @return objeto json
      */
     public static function reguistraUsuario($usuario) {
         $user = new ParseUser();
@@ -64,18 +54,30 @@ class APIUsuario {
         $user->set("password", $usuario->getPassword());
         $user->set("email", $usuario->getEmail());
         $user->set("tipo", $usuario->getTipo());
-
         try {
             $user->signUp();
-            return json_encode([reg=>1,mensaje=>'Usuario registrado']);
+            return json_encode([reg => 1, mensaje => 'Usuario registrado']);
         } catch (ParseException $ex) {
             if ($ex->getCode() == 203) {
-                return json_encode([reg=>0,mensaje=>"La direccion email " . $usuario->getEmail() . " ya esta ocupada"]);
+                return json_encode([reg => 0, mensaje => "La direccion email " . $usuario->getEmail() . " ya esta ocupada"]);
             } else if ($ex->getCode() == 202) {
-                return json_encode([reg=>0,mensaje=>"El nombre de usuario " . $usuario->getNombre() . " ya esta ocupado"]);
+                return json_encode([reg => 0, mensaje => "El nombre de usuario " . $usuario->getNombre() . " ya esta ocupado"]);
             } else {
-                return json_encode([reg=>0,mensaje=>"Error: " . $ex->getCode() . " " . $ex->getMessage()]);
+                return json_encode([reg => 0, mensaje => "Error: " . $ex->getCode() . " " . $ex->getMessage()]);
             }
+        }
+    }
+
+    /**
+     * Cierra la sesion del usuario actual
+     * @return objeto json
+     */
+    public static function cerrarSesion() {
+        try {
+            ParseUser::logOut();
+            return json_encode(['sesion' => 1]);
+        } catch (Exception $ex) {
+            return json_encode(['sesion' => 0, 'error' => $ex->getMessage()]);
         }
     }
 

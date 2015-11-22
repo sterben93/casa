@@ -1,3 +1,12 @@
+/* global $cookie */
+/* global $ */
+/* global $div3 */
+/* global div3 */
+/* global $div2 */
+/* global $div1 */
+/**
+ * Realiza las peticiones ajax a los WebServices
+ */
 function ajaxPHP(urlPHP,jsonData,funcion){
     $.ajax({
 			url : urlPHP,
@@ -10,32 +19,27 @@ function ajaxPHP(urlPHP,jsonData,funcion){
 	});
 }
 
-
+/**
+ * Construye el contenido de la paguina principal
+ * @param Objeto json
+ */
 function construirContenido(json){
-    texto="";
-    for(i=0;i<json.length-1;i++){
-      texto+='<div class="container-fluid celda">'+
-          '<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">'+
-          '<img class="img-responsive" src="'+json[i].url+'" alt="img de prueba">'+
-          '</div>'+
-          '<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">'+
-          '<p>Descripción: '+json[i].descripcion+'</p>'+
-          '<p>Precio: '+json[i].precio+'</p>'+
-          '</div>'+
-          '<div>'+
-          '<button type="submit" class="btn btn-default col-xs-offset-8 col-sm-offset-10 col-md-offset-10"  value="'+json.id+'">'+
-          'Ver mas...'+
-          '</button>'+
-          '</div>'+
-          '</div>';
-
+    for(var i=0;i<10;i++){
+        $div1=$('<div/>',{'class':'col-xs-12 col-sm-5 col-md-5 col-lg-5'}).append(
+             $('<img/>',{'class':'img-responsive',
+                         'src':json[i].url,
+                         'alt':'imagen de inmueble'}));
+        $div2=$('<div/>',{'class':'col-xs-12 col-sm-7 col-md-7 col-lg-7'}).append(
+             $('<p/>',{'html':'Despripcion: '+json[i].descripcion})).append(
+             $('<p/>',{'html':'Precio: '+json[i].precio}));
+        $div3=$('<div><button type="submit" class="btn btn-default col-xs-offset-8 col-sm-offset-10 col-md-offset-10"  value="'+json[i].id+'">'+'<div/>');
+       $('#contenido').append($('<div/>',{'class':'container-fluid celda'}).append($div1).append($div2).append($div3));
     }
-    $('.contenido').html(texto);
     $('button').click(function(){
-        id=this.value;
+        var id=this.value;
 		window.location.href="inmueble.html";
         window.location.reload;
-        $cookie('idcasa',id);
+        $cookie('idCasa',id);
 	});
     crearPaginacion(json[json.length-1]);
 }
@@ -45,11 +49,12 @@ function construirContenido(json){
  * @param {[[Type]]} numPaginacion [[Description]]
  */
 function crearPaginacion(json){
-    paginacion=json.pag;
+    var paginacion=json.pag;
+    var display;
     if(paginacion==0){
         break;
     }else if(paginacion<7){
-        display=numPaginacion;
+        display=paginacion;
     }else{
         display=7;
     }

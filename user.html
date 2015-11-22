@@ -1,49 +1,52 @@
 <!DOCTYPE html>
 <html lang="es" ng-app="">
-    <head>
-        <meta charset="utf-8">
-        <meta name="description" content="Realiza la búsqueda de casa, departamento que deseas de tu gusto">
-        <meta name="author" content="Ivan Romero Garcia">
-        <meta name="keywords" content="casas, departamentos, renta, venta, pensión">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Pagina</title>
-        <link rel="stylesheet" href="css/styleindex.css">
-        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <script type="text/javascript" src="js/jquery-1.11.2.js"></script>
-        <script type="text/javascript" src="js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="js/angular.min.js"></script>
-        <script type="text/javascript" src="js/angular-route.min.js"></script>
-        <script src="js/jquery.cookie.js"></script>
-        <script src="js/pestana.js"></script>
-    </head>
-    <body>
-<!-- Creacion de header mediante una plantilla  -->
-        <header ng-include src="'header.html'">
 
-        </header>
-<!-- Creacion de las pestañas de las opciones del usuario  -->
-        <ul class="nav nav-tabs nav-justified">
-		    <li id="pesanun"><a>Mis Anuncios</a></li>
-            <li id="pesfav"><a>Favoritos</a></li>
-            <li id="pesnoti"><a>Notificaciones</a></li>
-            <li id="pespub"><a>Publica</a></li>
-        </ul>
-<!-- El contenido es agregado por los eventos de click en sus botones correspodientes desde
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Realiza la búsqueda de casa, departamento que deseas de tu gusto">
+    <meta name="author" content="Ivan Romero Garcia">
+    <meta name="keywords" content="casas, departamentos, renta, venta, pensión">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pagina</title>
+    <link rel="stylesheet" href="css/styleindex.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script type="text/javascript" src="js/jquery-1.11.2.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/angular-route.min.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+    <script src="js/pestana.js"></script>
+</head>
+
+<body>
+    <!-- Creacion de header mediante una plantilla  -->
+    <header ng-include src="'header.html'">
+
+    </header>
+    <!-- Creacion de las pestañas de las opciones del usuario  -->
+    <ul class="nav nav-tabs nav-justified">
+        <li id="pesanun"><a>Mis Anuncios</a></li>
+        <li id="pesfav"><a>Favoritos</a></li>
+        <li id="pesnoti"><a>Notificaciones</a></li>
+        <li id="pespub"><a>Publica</a></li>
+    </ul>
+    <!-- El contenido es agregado por los eventos de click en sus botones correspodientes desde
      un archivo de js  -->
-        <div class="container">
-            <div id="contenido" class="col-xs-12 col-sm-offset-2 col-sm-8 col-md-8 col-lg-8">
+    <div class="container">
+        <div id="contenido" class="col-xs-12 col-sm-offset-2 col-sm-8 col-md-8 col-lg-8">
 
-            </div>
         </div>
-<!-- Creacion de footer mediante una plantilla  -->
-        <footer id="foot" class="row" ng-include src="'footer.html'">
+    </div>
+    <!-- Creacion de footer mediante una plantilla  -->
+    <footer id="foot" class="row" ng-include src="'footer.html'">
 
-        </footer>
-<!--Con este script me permite integrar plantillas a mi paguina html con angularjs-->
-        <script>
-            var miAPlicacion = angular.module('include',[]);
-        </script>
-    </body>
+    </footer>
+    <!--Con este script me permite integrar plantillas a mi paguina html con angularjs-->
+    <script>
+        var miAPlicacion = angular.module('include',[]);
+    </script>
+</body>
+
 </html>
