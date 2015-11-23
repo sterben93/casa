@@ -303,6 +303,7 @@ final class ParseClient
         }
 
         $response = curl_exec($rest);
+        curl_setopt($rest, CURLOPT_SSL_VERIFYPEER, false);
         $status = curl_getinfo($rest, CURLINFO_HTTP_CODE);
         $contentType = curl_getinfo($rest, CURLINFO_CONTENT_TYPE);
         if (curl_errno($rest)) {
