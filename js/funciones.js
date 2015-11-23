@@ -9,7 +9,6 @@ var colsulta={};
  * Realiza las peticiones ajax a los WebServices
  */
 function ajaxPHP(urlPHP,jsonData,funcion){
-    alert(jsonData.numero)
     alert('Hola');
     $.ajax({
 			url : urlPHP,
@@ -27,7 +26,6 @@ function ajaxPHP(urlPHP,jsonData,funcion){
  * @param Objeto json
  */
 function construirContenido(json){
-    alert(json[0].id);
     for(var i=0;i<json.length;i++){
         $div1=$('<div/>',{'class':'col-xs-12 col-sm-5 col-md-5 col-lg-5'}).append(
              $('<img/>',{'class':'img-responsive',
@@ -45,7 +43,6 @@ function construirContenido(json){
         window.location.reload;
         $cookie('idCasa',id);
 	});
-
 }
 
 /**

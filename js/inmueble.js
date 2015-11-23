@@ -5,6 +5,7 @@ $(document).ready(crearContenido);
 
 function crearContenido() {
     var idCasa =$cookie('idCasa');
+    alert(idCasa);
     ajaxPHP('http://localhost/apiParse/pruebas.php',{'numero':'2','id':idCasa},llenarContenido);
 }
 
