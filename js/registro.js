@@ -7,13 +7,24 @@
  */
 $(document).ready(function (){
 	sesion();
+    texto='"numero":"3",';
     $('#enviar').click(function (){
-        datos=$('#formularioUsuario').serializeArray();
-        json=new Array();
-        for(var i=0;i<datos.length;i++){
-            json.push(datos[i].name+":"+datos[i].value);
-        }
-        jsonUsuario={numero:3,json};
-        ajaxPHP('http://localhost/apiParse/WebServicesUsuario.php',jsonUsuario,[registroDeUsuario]);
+        texto='{"numero":"3",'
+        $('input').each(function(idx, input) {
+            texto+='"'+input.id+'":"'+input.value+'",';
+        });
+        texto+='"'+$('select').attr('id')+'":"'+$('select').val()+'"}';
+        json=JSON.parse(texto);
+        ajaxPHP('http://localhost/apiParse/WebServicesUsuario.php',json,regUsuario);
     });
 });
+
+function regUsuario(json){
+    if(json.reg==1){
+        alert(json.mensaje);
+        window.location.href='index.html';
+        window.location.reload;
+    }else{
+        alert(json.mensaje);
+    }
+}

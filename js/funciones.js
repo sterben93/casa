@@ -1,19 +1,19 @@
-function ajaxPHP(urlPHP,jsonData){
+function ajaxPHP(urlPHP,jsonData,funcion){
     $.ajax({
 			url : urlPHP,
 			data : jsonData,
             type : 'POST',
 			dataType : 'json',
 			success : function(json) {
-                alert(json.logeo+" "+json.error);
+                funcion(json);
 			},
 	});
 }
 
 
-function construir(json){
+function construirContenido(json){
     texto="";
-    for(i=0;i<json.length;i++){
+    for(i=0;i<json.length-1;i++){
       texto+='<div class="container-fluid celda">'+
           '<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">'+
           '<img class="img-responsive" src="'+json[i].url+'" alt="img de prueba">'+
@@ -23,7 +23,7 @@ function construir(json){
           '<p>Precio: '+json[i].precio+'</p>'+
           '</div>'+
           '<div>'+
-          '<button type="submit" class="btn btn-default col-xs-offset-8 col-sm-offset-10 col-md-offset-10" value="'+json.id+'">'+
+          '<button type="submit" class="btn btn-default col-xs-offset-8 col-sm-offset-10 col-md-offset-10"  value="'+json.id+'">'+
           'Ver mas...'+
           '</button>'+
           '</div>'+
@@ -33,24 +33,29 @@ function construir(json){
     $('.contenido').html(texto);
     $('button').click(function(){
         id=this.value;
-		window.location.href="http://localhost/casa.html";
+		window.location.href="inmueble.html";
         window.location.reload;
         $cookie('idcasa',id);
 	});
+    crearPaginacion(json[json.length-1]);
 }
 
 /**
  * [[Description]]
  * @param {[[Type]]} numPaginacion [[Description]]
  */
-function crearPaginacion(numPaginacion){
-    if(numPaginacion<5){
+function crearPaginacion(json){
+    paginacion=json.pag;
+    if(paginacion==0){
+        break;
+    }else if(paginacion<7){
         display=numPaginacion;
     }else{
         display=7;
     }
+
     $("#paginacion").paginate({
-    	count : numPaginacion,
+    	count : paginacion,
         start : 1,
 		display : display,
 		border : true,
@@ -66,29 +71,4 @@ function crearPaginacion(numPaginacion){
             alert(consulta);
         }
     });
-}
-
-/**
- * [[Description]]
- * @param {[[Type]]} respuesta [[Description]]
- */
-function login(respuesta){
-    if(respuesta===1){
-        $cookie('sesion','true');
-        $cookie('idUsuario',json.id);
-        $("#mensaje").hide();
-        window.location.href="index.html";
-        window.location.reload;
-    }else{
-        alert(json.logeo);
-		$("#mensaje").show();
-    }
-}
-
-function registroUsuario(json){
-
-}
-
-function inicioSesion(){
-
 }

@@ -63,19 +63,19 @@ class APIUsuario {
         $user = new ParseUser();
         $user->set("username", $usuario->getNombre());
         $user->set("password", $usuario->getPassword());
-        $usuario->set("email", $usuario->getEmail());
+        $user->set("email", $usuario->getEmail());
         $user->set("tipo", $usuario->getTipo());
 
         try {
             $user->signUp();
-            return 'Usuario registrado';
+            return json_encode([reg=>1,mensaje=>'Usuario registrado']);
         } catch (ParseException $ex) {
             if ($ex->getCode() == 203) {
-                return "La direccion email " . $usuario->getEmail() . " ya esta ocupada";
+                return json_encode([reg=>0,mensaje=>"La direccion email " . $usuario->getEmail() . " ya esta ocupada"]);
             } else if ($ex->getCode() == 202) {
-                return "El nombre de usuario " . $usuario->getNombre() . " ya esta ocupado";
+                return json_encode([reg=>0,mensaje=>"El nombre de usuario " . $usuario->getNombre() . " ya esta ocupado"]);
             } else {
-                return "Error: " . $ex->getCode() . " " . $ex->getMessage();
+                return json_encode([reg=>0,mensaje=>"Error: " . $ex->getCode() . " " . $ex->getMessage()]);
             }
         }
     }
