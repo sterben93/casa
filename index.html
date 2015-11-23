@@ -13,15 +13,19 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <script type="text/javascript" src="js/jquery-1.11.2.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/angular.min.js"></script>
     <script type="text/javascript" src="js/angular-route.min.js"></script>
     <script type="text/javascript" src="js/jquery.cookie.js"></script>
-    <script type="text/javascript" src="js/jquery.paginate.js"></script>
-    <script type="text/javascript" src="js/funciones.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/sesion.js"></script>
     <script type="text/javascript" src="js/peticiones.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/jquery-1.3.2.js"></script>
+    <script type="text/javascript" src="js/jquery.paginate.js"></script>
+    <script type="text/javascript" src="js/funciones.js"></script>
+
+
+
 </head>
 
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
@@ -160,7 +164,15 @@
         <script>
             var miAPlicacion = angular.module('include',[]);
         </script>
-
+        <script>
+                $('#pagination-demo').twbsPagination({
+        totalPages: 35,
+        visiblePages: 7,
+        onPageClick: function (event, page) {
+            $('#page-content').text('Page ' + page);
+        }
+    });
+        </script>
 </body>
 
 </html>

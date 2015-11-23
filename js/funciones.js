@@ -25,12 +25,15 @@ function ajaxPHP(urlPHP,jsonData,funcion){
  * Construye el contenido de la paguina principal
  * @param Objeto json
  */
-function construirContenido(json){
+function construirContenido(jsonArray){
+    json=jsonArray.inmuebles;
     for(var i=0;i<json.length;i++){
+
         $div1=$('<div/>',{'class':'col-xs-12 col-sm-5 col-md-5 col-lg-5'}).append(
              $('<img/>',{'class':'img-responsive',
                          'src':json[i].url,
                          'alt':'imagen de inmueble'}));
+
         $div2=$('<div/>',{'class':'col-xs-12 col-sm-7 col-md-7 col-lg-7'}).append(
              $('<p/>',{'html':'Despripcion: '+json[i].descripcion})).append(
              $('<p/>',{'html':'Precio: '+json[i].precio}));
@@ -43,6 +46,7 @@ function construirContenido(json){
         window.location.reload;
         $cookie('idCasa',id);
 	});
+    crearPaginacion(jsonArray.paginacion);
 }
 
 /**
@@ -52,9 +56,7 @@ function construirContenido(json){
 function crearPaginacion(json){
     var paginacion=json.pag;
     var display;
-    if(paginacion==0){
-        break;
-    }else if(paginacion<7){
+    if(paginacion<7){
         display=paginacion;
     }else{
         display=7;
