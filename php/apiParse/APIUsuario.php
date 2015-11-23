@@ -13,6 +13,7 @@
  */
 require 'vendor/autoload.php';
 require 'modelos/Usuario.php';
+require 'vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
 
 use Parse\ParseUser;
 use Parse\ParseException;
@@ -94,6 +95,12 @@ class APIUsuario {
         }
         return $user;
     }
+    public static function usuarioActual(){
+        return ParseUser::getCurrentUser();
+    }
+    public static function cerrarSesion(){
+        ParseUser::logOut();
+    }
     public static function reiniciarContraseña($email){
         try {
             ParseUser::requestPasswordReset($email);
@@ -111,7 +118,7 @@ class APIUsuario {
      * @param type $calificacion la calificacion a asignar 
      */
     public function calificaUsuario($usuario, $usuarioCalificado, $calificacion){
-        $calificacionAct=Usuario::existeCalificacion($usuario, $usuarioCalificado);
+        $calificacionAct=APIUsuario::existeCalificacion($usuario, $usuarioCalificado);
         if ($calificacionAct!=null) {
             $calificacionAct->destroy();
         }
@@ -159,5 +166,157 @@ class APIUsuario {
             $promedio += $calif[$i]->get("calificacion");
         }
         return $promedio / $fin;
+    }
+    /**
+     * Cuando el $usuario quiera rentar/comprar una casa ($inmueble), se mandara a llamar este metodo,
+     * el cual se encargara de mandarle la notificacion al arrendador de que alguien 
+     * quiere rentar su casa, y guardara esto en la tabla UsuarioVeDatosCasa, con un valor 
+     * de false en la columna "validado", y se pondra en true hasta que el arrendador autorize 
+     * que el usuario pueda ver sus datos (correo y nombre).
+     * @param type $usuario
+     * @param type $inmueble
+     * @return string
+     */
+    public function usuarioSolicitaCasa($usuario, $inmueble){
+        if(APIUsuario::yaSolicito($usuario, $inmueble)){
+            return "Ya solicitaste los datos de este inmueble";
+        }
+        $arrendador = $inmueble->get("idUsuario");
+        $arrendador->fetch();
+        //echo " arrendador ". $arrendador->get("username") ."<br>";
+        
+        $mail= $usuario->get("email");
+        $asunto= "Tienes un cliente en confort house!";
+        $txt= "Hola ". $usuario->get("username")."! Nos es grato informarte que te hemos conseguido\n"
+            ." un cliente esperando contactarse contigo para rentar/comprar tu casa en "
+            .$inmueble->get("direccion").".\nPara ponerte en contacto con el entra ya a conforthouse!.\n";
+        
+        echo "<br>".$mail. "<br>";
+        APIUsuario::enviarNotificacion($mail, $asunto, $txt);
+        $peticion =  new ParseObject("UsuarioVeDatosCasa");
+        $peticion->set("idInmueble", $inmueble);
+        $peticion->set("idUsuario", $usuario);
+        $peticion->set("arrendador",$arrendador);
+        $peticion->set("validado",false);
+        $peticion->save();
+        if($inmueble->get("activado")){
+            APIUsuario::autorizarContacto($inmueble);
+        }
+        return "Gracias por usar confort house, los datos del arrendador se te transferiran en cuanto este autorize la solicitud";
+    }
+    /**
+     * Envia una notificacion al usuario de que alguien quiere rentar su casa.
+     * @param type $usuario
+     * @param type $inmueble
+     */
+    private function enviarNotificacion($mail,$asunto,$txt){
+        $email = new PHPMailer;
+        //Enable SMTP debugging. 
+        $email->SMTPDebug = 0;                               
+        //Set PHPMailer to use SMTP.
+        $email->isSMTP();            
+        //Set SMTP host name                          
+        $email->Host = "smtp.gmail.com";
+        //Set this to true if SMTP host requires authentication to send email
+        $email->SMTPAuth = true;                          
+        //Provide username and password     
+        $email->Username = "manu.ang6587@gmail.com"; /*cambiar esto, si pones tu cuenta de google te dira que bloqueo esta aplicacion, tienes que activar el uso de aplicaciones no seguras para que esto jale*/
+        $email->Password = "waitforit...";  
+        //If SMTP requires TLS encryption then set it
+        $email->SMTPSecure = "tls";
+        //Set TCP port to connect to 
+        $email->Port = 587;                                   
+        $email->From = "conforthouse@gmail.com";
+        $email->FromName = "Confort house";
+        $email->addAddress($mail, "Recepient Name");
+        $email->isHTML(false);
+        $email->Subject = $asunto;
+        $email->Body = $txt;
+        $email->AltBody = $txt;
+        if(!$email->send()){
+            echo "Mailer Error: " . $email->ErrorInfo;
+        }
+    }
+    /**
+     * Se asegura que si el usuario pide ver los datos de una casa, esta relacion no exista.
+     * Retorna true si la relacion ya existe, false si no.
+     * @param type $usuario
+     * @param type $inmueble
+     * @return boolean
+     */
+    private function yaSolicito($usuario, $inmueble){
+        $peticion =  new ParseQuery("UsuarioVeDatosCasa");
+        $peticion->equalTo("idUsuario", $usuario);
+        $peticion->equalTo("idInmueble", $inmueble);
+        $resp= $peticion->find();
+        if(count($resp)==0){
+            return false;
+        }else return true;
+    }
+    /**
+     * Devuelve todos los usuarios que se han interesado en alguna casa del 
+     * $arrendador y que aun no se ha autorizado su contact. Los datos se devuelven
+     * en forma de relacion de la tabla UsuarioVeDatosCasa, contiene idInmueble
+     * (el inmueble que le intereso al usuario), idUsuario (el usuario interesado),
+     * y arrendador (el usuario dueño del inmueble).
+     * @param type $arrendador
+     * @return type
+     */
+    public function getNotificacionesArrendador($arrendador){
+        $query =  new ParseQuery("UsuarioVeDatosCasa");
+        $query->equalTo("arrendador", $arrendador);
+        $query->equalTo("validado",false);
+        $query->ascending("idUsuario"); //importante
+        $res= $query->find();
+        $fin= count($res);
+        for($i=0;$i<$fin;$i++){ 
+            $user= $res[$i]->get("idUsuario");
+            $inm = $res[$i]->get("idInmueble");
+            $user->fetch(); $inm->fetch(); //imprimo el usuario con fines de debugeo, cuando se le notifique al arrendador no se le mostrara quien es
+            echo "El usuario ". $user->get("username"). " se interesa en la casa que esta en "; //para evitar que se contacten entre ellos
+            echo $inm->get("direccion").". <br>"; //solo se mostrara que alguien quiere rentar esa casa
+        }
+        return $res;
+    }
+    /**
+     * Autoriza el contacto con las personas que se interesen por la compra o
+     * renta del $inmueble, mandandoles un correo a todas ellas. Se mandara a 
+     * llamar este metodo cuando el usuario pague por ese inmueble en particular.
+     * @param type $inmueble
+     */
+    public function autorizarContacto($inmueble){
+        $arrendador= APIUsuario::usuarioActual();
+        if (!$arrendador->isAuthenticated()) {
+            return false;
+        }
+        $inmueble->set("activado", true);
+        $query = new ParseQuery("UsuarioVeDatosCasa");
+        $query->equalTo("idInmueble", $inmueble);
+        $query->equalTo("arrendador", $arrendador);
+        $query->equalTo("validado", false);
+        $res= $query->find();
+        $fin =count($res);
+        for($i=0;$i<$fin;$i++){ 
+            //$res[$i]-> fetch();
+            $user= $res[$i]->get("idUsuario");
+            $user->fetch();
+            $mail= $user->get("email");
+            $asunto = "El arrendador de la casa que solicitaste se quiere contactar contigo!";
+            $txt="Hola! " . $user->get("username"). ", Nos complase informarte que el usuario ". $arrendador->get("username")
+                    ." ha desidido contactarse contigo y llegar a un acuerdo para la venta/renta de su casa ubicada en "
+                    .$inmueble->get("direccion").". Puedes ponerte en contacto con el a traves de este correo: "
+                    .$arrendador->get("email");
+            APIUsuario::enviarNotificacion($mail,$asunto,$txt);
+            echo "se envio correo informativo a ". $mail. " con el contenido: <br>". $txt." <br>";
+            $res[$i]->set("validado", true);
+        }
+    }
+    /**
+     * Devuelve todas las personas con las que se ha contactado, ya sea con clientes
+     * o con otros arrendadores.
+     * @param type $usuario
+     */
+    public function getContactos($usuario){
+        
     }
 }

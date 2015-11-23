@@ -228,7 +228,7 @@ class APIInmueble {
         //$consulta= new ParseQuery("Inmueble"); //este es un ejemplo de como agregar una imagen.
         //$inmueble = $consulta->get("Wkz7fvW6qG");
         //$consulta= new ParseQuery("Imagenes");
-        //$imagen= $consulta->first();        
+        //$imagen= $consulta->first();
         $relacion= $inmueble->getRelation("imagenes");
         $relacion->add($imagen);
         $inmueble->save();
