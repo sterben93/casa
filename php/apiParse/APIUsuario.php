@@ -34,7 +34,7 @@ class APIUsuario {
             if ($ex->getCode() == 101) {
                 return json_encode([logeo => 0, error => "Error: El usuario o la contraseña es incorrecta"]);
             } else {
-                return json_encode([logeo => 0, error => "Error: " . $ex->getCode()]);
+                return json_encode([logeo => 0, error => "Error: " . $ex->getMessage()]);
             }
         }
     }
@@ -63,7 +63,7 @@ class APIUsuario {
             } else if ($ex->getCode() == 202) {
                 return json_encode([reg => 0, mensaje => "El nombre de usuario " . $usuario->getNombre() . " ya esta ocupado"]);
             } else {
-                return json_encode([reg => 0, mensaje => "Error: " . $ex->getCode() . " " . $ex->getMessage()]);
+                return json_encode([reg => 0, mensaje => $ex->getMessage()]);
             }
         }
     }

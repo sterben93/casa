@@ -1,15 +1,10 @@
 /* global jsonBusqueda */
 /* global jsonFiltros */
-/* global consulta */
 /* global $ */
-
-consulta={numero:1};
 
 /**
  * Metodp que inicializa los Botones con su repectivo metodo
  */
-
-
 $(function busquedas() {
     var filtros = $('#btfiltros');
     var busqueda=$('#busqueda');
@@ -22,15 +17,13 @@ $(function busquedas() {
  */
 function consultaFiltros() {
     datos=$('#fomularioFiltros').serializeArray();
-    json=new Array();
-    alert(datos.length);
+    texto='{';
     for(var i=0;i<datos.length;i++){
-        json.push(datos[i].name+":"+datos[i].value);
+        texto+='"'+datos[i].name+'":"'+datos[i].value+'",';
     }
-    jsonFiltros={numero:2,json};
-    ajaxPHP('http://localhost/apiParse/WebServicesInmueble.php',jsonFiltros,[construir,crearPaginacion]);
-    alert(jsonFiltros);
-	consulta=jsonFiltros;
+    texto+='"numero":"1"}';
+    json=JSON.parse(texto);
+    ajaxPHP('http://localhost/apiParse/WebServicesInmueble.php',json,construirContenido);
 }
 
 /**
@@ -38,15 +31,14 @@ function consultaFiltros() {
  */
 function consultaBusqueda(){
     datos=$('#formularioBusqueda').serializeArray();
-    json=new Array();
-    alert(datos.length);
+    texto='{';
     for(var i=0;i<datos.length;i++){
-        json.push(datos[i].name+":"+datos[i].value);
+        texto+='"'+datos[i].name+'":"'+datos[i].value+'",';
     }
-    jsonBusqueda={numero:3,json};
-    alert(jsonBusqueda);
+    texto+='"numero":"1"}';
+    json=JSON.parse(texto);
     ajaxPHP('http://localhost/apiParse/WebServicesInmueble.php',jsonBusqueda,[construir,crearPaginacion]);
-	consulta=jsonBusqueda;
+
 }
 
 function consultaAll(){

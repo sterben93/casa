@@ -4,10 +4,12 @@
 /* global div3 */
 /* global $div2 */
 /* global $div1 */
+var colsulta={};
 /**
  * Realiza las peticiones ajax a los WebServices
  */
 function ajaxPHP(urlPHP,jsonData,funcion){
+    consulta=jsonData;
     $.ajax({
 			url : urlPHP,
 			data : jsonData,
