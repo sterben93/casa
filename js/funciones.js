@@ -9,7 +9,8 @@ var colsulta={};
  * Realiza las peticiones ajax a los WebServices
  */
 function ajaxPHP(urlPHP,jsonData,funcion){
-    consulta=jsonData;
+    alert(jsonData.numero)
+    alert('Hola');
     $.ajax({
 			url : urlPHP,
 			data : jsonData,
@@ -26,7 +27,8 @@ function ajaxPHP(urlPHP,jsonData,funcion){
  * @param Objeto json
  */
 function construirContenido(json){
-    for(var i=0;i<10;i++){
+    alert(json[0].id);
+    for(var i=0;i<json.length;i++){
         $div1=$('<div/>',{'class':'col-xs-12 col-sm-5 col-md-5 col-lg-5'}).append(
              $('<img/>',{'class':'img-responsive',
                          'src':json[i].url,
@@ -34,8 +36,8 @@ function construirContenido(json){
         $div2=$('<div/>',{'class':'col-xs-12 col-sm-7 col-md-7 col-lg-7'}).append(
              $('<p/>',{'html':'Despripcion: '+json[i].descripcion})).append(
              $('<p/>',{'html':'Precio: '+json[i].precio}));
-        $div3=$('<div><button type="submit" class="btn btn-default col-xs-offset-8 col-sm-offset-10 col-md-offset-10"  value="'+json[i].id+'">'+'<div/>');
-       $('#contenido').append($('<div/>',{'class':'container-fluid celda'}).append($div1).append($div2).append($div3));
+        $div3=$('<div><button type="submit" class="btn btn-default col-xs-offset-8 col-sm-offset-10 col-md-offset-10"  value="'+json[i].id+'">Ver mas...</button>'+'</div>');
+       $('.contenido').append($('<div/>',{'class':'container-fluid celda'}).append($div1).append($div2).append($div3));
     }
     $('button').click(function(){
         var id=this.value;
@@ -43,7 +45,7 @@ function construirContenido(json){
         window.location.reload;
         $cookie('idCasa',id);
 	});
-    crearPaginacion(json[json.length-1]);
+
 }
 
 /**

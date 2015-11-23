@@ -4,8 +4,8 @@
 $(document).ready(crearContenido);
 
 function crearContenido() {
-    var idCasa =$cookie('idCasa')
-    ajaxPHP('http://localhost/apiParse/WebServicesInmueble.php',{'numero':'','id':idCasa},llenarContenido);
+    var idCasa =$cookie('idCasa');
+    ajaxPHP('http://localhost/apiParse/pruebas.php',{'numero':'2','id':idCasa},llenarContenido);
 }
 
 function llenarContenido(json) {
