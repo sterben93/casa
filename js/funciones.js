@@ -1,3 +1,5 @@
+/* global consulta */
+/* global json */
 /* global $cookie */
 /* global $ */
 /* global $div3 */
@@ -5,17 +7,18 @@
 /* global $div2 */
 /* global $div1 */
 var colsulta={};
+
 /**
  * Realiza las peticiones ajax a los WebServices
  */
 function ajaxPHP(urlPHP,jsonData,funcion){
-    alert('Hola');
     $.ajax({
 			url : urlPHP,
 			data : jsonData,
             type : 'POST',
 			dataType : 'json',
 			success : function(json) {
+                alert('hola ajax');
                 funcion(json);
 			},
 	});
@@ -49,34 +52,20 @@ function construirContenido(jsonArray){
     crearPaginacion(jsonArray.paginacion);
 }
 
-/**
- * [[Description]]
- * @param {[[Type]]} numPaginacion [[Description]]
- */
+
 function crearPaginacion(json){
     var paginacion=json.pag;
     var display;
-    if(paginacion<7){
+    if(paginacion<5){
         display=paginacion;
     }else{
-        display=7;
+        display=5;
     }
-
-    $("#paginacion").paginate({
-    	count : paginacion,
-        start : 1,
-		display : display,
-		border : true,
-		border_color : 'black',
-		text_color : 'black',
-		background_color : 'white',
-		border_hover_color : '#ccc',
-		text_hover_color : '#000',
-		background_hover_color : '#fff',
-		images : false,
-		mouse : 'press',
-		onChange : function(page){
-            alert(consulta);
+    $('#pagination-demo').twbsPagination({
+        totalPages: paginacion,
+        visiblePages: display,
+        onPageClick: function (event, page) {
+            $('#page-content').text('Page ' + page);
         }
     });
 }

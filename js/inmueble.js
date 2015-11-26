@@ -3,12 +3,19 @@
 
 $(document).ready(crearContenido);
 
+/**
+ * Crea el contenido de la pagina Inmueble
+ */
 function crearContenido() {
     var idCasa =$cookie('idCasa');
     alert(idCasa);
     ajaxPHP('http://localhost/apiParse/pruebas.php',{'numero':'2','id':idCasa},llenarContenido);
 }
 
+/**
+ * Llena el contenido de la descripcion del inmueble
+ * @param {object} json Contiene la informcaion para el llenado de la pagina
+ */
 function llenarContenido(json) {
     var listaImg=new Array();
     listaImg=json.url;

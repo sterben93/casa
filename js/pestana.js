@@ -1,8 +1,9 @@
+/* global $removeCookie */
 /* global pestana */
-/* global pesnoti */
-/* global pesfav */
-/* global pesanum */
-/* global pespub */
+/* global $pesnoti */
+/* global $pesfav */
+/* global $pesanum */
+/* global $pespub */
 
 $(document).ready(inicializa);
 
@@ -10,26 +11,26 @@ $(document).ready(inicializa);
  * Verifica el contenido de la cookie pestana para activar la pestaña solicitada ppor el usuario
  */
 function inicializa() {
-    pesanum = $('#pesanun');
-    pesfav = $('#pesfav');
-    pesnoti = $('#pesnoti');
-    pespub = $('#pespub');
+    $pesanum = $('#pesanun');
+    $pesfav = $('#pesfav');
+    $pesnoti = $('#pesnoti');
+    $pespub = $('#pespub');
     if ($cookie('pestana') !== undefined) {
         pestana[$cookie('pestana')]();
     }
-    pesanum.click(function () {
+    $pesanum.click(function () {
         pestanaAnuncio();
     });
 
-    pesfav.click(function () {
+    $pesfav.click(function () {
         pestanaFavorito();
     });
 
-    pesnoti.click(function () {
+    $pesnoti.click(function () {
         pestanaNotificaciones();
     });
 
-    pespub.click(function () {
+    $pespub.click(function () {
         pestanaPublica();
     });
 }
@@ -39,34 +40,34 @@ function inicializa() {
  *  comportamiento de una pestaña activada
  */
 function pestanaAnuncio() {
-    pesanum.addClass('active');
-    pesfav.removeClass('active');
-    pesnoti.removeClass('active');
-    pespub.removeClass('active');
+    $pesanum.addClass('active');
+    $pesfav.removeClass('active');
+    $pesnoti.removeClass('active');
+    $pespub.removeClass('active');
     //$('#contenido').load("http://localhost/php/misanuncios.php");
 }
 
 function pestanaFavorito() {
-    pesanum.removeClass('active');
-    pesfav.addClass('active');
-    pesnoti.removeClass('active');
-    pespub.removeClass('active');
+    $pesanum.removeClass('active');
+    $pesfav.addClass('active');
+    $pesnoti.removeClass('active');
+    $pespub.removeClass('active');
     //$('#contenido').load("http://localhost/php/favoritos.php");
 }
 
 function pestanaNotificaciones() {
-    pesanum.removeClass('active');
-    pesfav.removeClass('active');
-    pesnoti.addClass('active');
-    pespub.removeClass('active');
+    $pesanum.removeClass('active');
+    $pesfav.removeClass('active');
+    $pesnoti.addClass('active');
+    $pespub.removeClass('active');
     //$('#contenido').load("http://localhost/php/notificaciones.php");
 }
 
 function pestanaPublica() {
-    pesanum.removeClass('active');
-    pesfav.removeClass('active');
-    pesnoti.removeClass('active');
-    pespub.addClass('active');
+    $pesanum.removeClass('active');
+    $pesfav.removeClass('active');
+    $pesnoti.removeClass('active');
+    $pespub.addClass('active');
     $('#contenido').load("http://localhost/casas/publica.html");
 }
 

@@ -1,8 +1,13 @@
-<form action="" method="POST" role="form">
+<link rel="stylesheet" href="css/progression.css">
+<script type="text/javascript" src="js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="js/progression.js"></script>
+<script type="text/javascript" src="js/publica.js"></script>
+<form action="" method="POST" role="form" enctype="multipart/form-data" id="formularioInm">
     <legend>Registro de Inmobiliario</legend>
     <div class="form-group">
         <label for="">Tipo de Servicio</label>
-        <select name="servicio" id="input" class="form-control" required="required">
+        <select name="servicio" id="input" class="form-control" required="required"
+           data-progression data-helper="Tipo de servicio a realizar: venta, Renta, etc">
             <option value="0">Tipo de servicio</option>
             <option value="1">Venta</option>
             <option value="2">Renta</option>
@@ -10,22 +15,35 @@
             <option value="4">A Tratar</option>
         </select>
         <br/>
-        <input type="text" class="form-control" id="" placeholder="Direccion">
+        <input type="text" class="form-control" id="" placeholder="Direccion" required
+        data-progression data-helper="Calle entre calle y calle N°">
         <br/>
-        <input type="text" class="form-control" id="" placeholder="Colonia">
+        <input type="text" class="form-control" id="" placeholder="Colonia" required
+        data-progression data-helper="Colonia en donde se localiza el Inmueble">
         <br/>
-        <input type="number" class="form-control" id="" placeholder="Codigo Postal">
+        <input type="number" class="form-control" id="" placeholder="Codigo Postal" required
+        data-progression data-helper="Codigo Postal de 5 digito Numericos">
         <br/>
-        <input type="number" class="form-control" id="" placeholder="Numero Cuartos">
+        <input type="number" class="form-control" id="" placeholder="Numero Cuartos" required
+        data-progression data-helper="Datos numerico representado la cantidad de cuartos en el inmueble">
         <br/>
-        <input type="number" class="form-control" id="" placeholder="Numero Baños">
+        <input type="number" class="form-control" id="" placeholder="Numero Baños" required
+        data-progression data-helper="Datos numerico representado la cantidad de baños en el inmueble">
         <br/>
-        <input type="number" class="form-control" id="" placeholder="Numero Estacionamientos">
+        <input type="number" class="form-control" id="" placeholder="Numero Estacionamientos" required
+        data-progression data-helper="Datos numerico representado la cantidad de estacionamientos en el inmueble">
         <br/>
-        <input type="number" class="form-control" id="" placeholder="Numero de Plantas">
+        <input type="number" class="form-control" id="" placeholder="Numero de Plantas" required
+        data-progression data-helper="Datos numerico representado la cantidad de plantas en el inmueble">
         <br/>
-        <input type="number" class="form-control" id="" placeholder="Precio">
+        <input type="number" class="form-control" id="" placeholder="Precio" requireddata-progression data-helper="Datos           numerico representado el precio del Inmueble">
         <br/>
+        <input type="file" name="file[]" multiple
+        data-progression data-helper="Se acepta solo tres imagenes por inmueble">
     </div>
-    <button type="submit" class="btn btn-primary">Enviar</button>
+    <button class="btn btn-primary" id="enviar">Enviar</button>
 </form>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="imagenes">
+
+</div>
+
