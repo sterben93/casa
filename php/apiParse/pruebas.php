@@ -19,11 +19,9 @@ and open the template in the editor.
             use Parse\ParseObject;
             use Parse\ParseQuery;
             use Parse\ParseUser;
-
             /*$pars = new ParseObject("TestObject");
             $pars->set("foo","asd");
             $pars->save();*/
-
             /********************** Pruebas con los usuarios ******************/
             /* creando un usuario*/
             /*$result= APIUsuario::registrarUsuario("cuenta de prueba", "123","prueba@hotmail.com",1);
@@ -32,7 +30,6 @@ and open the template in the editor.
             }else {
                 echo $result."<br>";
             }*/
-
             /*Usar el usuario logeado*/
             /*$actual= APIUsuario::usuarioActual();
             if($actual!=null){
@@ -40,35 +37,45 @@ and open the template in the editor.
             }else {echo "Ningun usuario conectado<br>";}
             /*cerrar sesion
             APIUsuario::cerrarSesion();*/
-
             //$objeto= $consulta->get("Dxl8ifn73z");
             //$objeto->destroy();
-
             muestraUsuarios();
-            //calificaUsuario(); innercircle1
-            //getCalificacionUsuario(); luzvivanco1#
+            //calificaUsuario(); //innercircle1
+            //getCalificacionUsuario(); //luzvivanco1#
             //solicitaCasa();
-
-            notificacionesArrendador();
-            autorizarContactos();
+            //getImagenesInmuebles();
+            notificaciones();
+            //autorizarContactos();
             function autorizarContactos(){
                 iniciaSesion();
                 $query = new ParseQuery("Inmueble");
                 $inmueble = $query->get("ECBYtmXxj6");
-                APIUsuario::autorizarContacto($inmueble);
+                User::autorizarContacto($inmueble);
             }
-            function notificacionesArrendador(){
+            function notificaciones(){
                 $query = new ParseQuery("_User");
-                $user= $query->get("LLLdzjvZ44");
-                APIUsuario::getNotificacionesArrendador($user);
+                $user= $query->get("LLLdzjvZ44");//ivan X8gPmNBW1R
+                $notificaciones=User::getNotificaciones($user); //LLLdzjvZ44 yo
+                $fin=count($notificaciones);
+                echo "Notificaciones:<br>";
+                for($i=0;$i<$fin;$i++){
+                    if($notificaciones[$i]->tipo == Notificacion::CONTACTO_NUEVO){
+                        echo "Contacto nuevo!<br>".$notificaciones[$i]->mensaje;
+                    }else if($notificaciones[$i]->tipo == Notificacion::CLIENTE_POTENCIAL){
+                        echo "Cliente potencial!(aqui hay que poner un boton para que pague)<br>".$notificaciones[$i]->mensaje;
+                    }else {
+                        echo "Contacto con el arrendador!<br>".$notificaciones[$i]->mensaje;
+                    }
+                }
             }
             function solicitaCasa(){
                 $query = new ParseQuery("Inmueble");
-                $inmueble = $query->get("ECBYtmXxj6");
+                $inmueble = $query->get("Y713cZ9ZQk");
                 $query = new ParseQuery("_User");
-                $user= $query->get("p4Zy5A64pY");
-                $resp= APIUsuario::usuarioSolicitaCasa($user, $inmueble);
-                echo $resp;
+                $user= $query->get("LLLdzjvZ44"); 
+                echo "<br>Solicitando casa: <br>";
+                $resp= User::usuarioSolicitaCasa($user, $inmueble);
+                echo $resp."<br>";
             }
             function guardaImagenRelacion(){
                 $consulta= new ParseQuery("Inmueble");
@@ -83,7 +90,7 @@ and open the template in the editor.
                 $query = new ParseQuery("_User");
                 $usuario =  $query->get("X8gPmNBW1R");
                 $usuarioCalificado= $query->get("xfRgPRI2Ta");
-                APIUsuario::calificaUsuario($usuario,$usuarioCalificado, 6);
+                User::calificaUsuario($usuario,$usuarioCalificado, 6);
             }
             function getCalificacionUsuario(){
                 $query = new ParseQuery("_User");
@@ -95,7 +102,6 @@ and open the template in the editor.
                 }else{
                     echo " tiene la calificacion de ". $calif. " <br>";
                 }
-
             }
             function consultaVariasImagenes(){
                 $consulta= new ParseQuery("Imagenes");
