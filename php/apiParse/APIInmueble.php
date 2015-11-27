@@ -131,12 +131,12 @@ class APIInmueble {
             colonia => $inmueble->get('colonia'),
             codigoPostal => $inmueble->get('codigoPostal'),
             cuartos => $inmueble->get('numeroCuartos'),
-            banos => $inmueble->get('numeroBanos'),
+            banos => $inmueble->get('numeroBathrooms'),
             estacionamientos => $inmueble->get('numeroEstacionamientos'),
             plantas => $inmueble->get('numeroPlantas'),
             precio => $inmueble->get('precio'),
             descripcion => $inmueble->get('descripcion'),
-            fechaPublicacion => $inmueble->get('fechaPublicacion'),
+            fechaPublicacion => $inmueble->getCreatedAt(),
             disponible => $inmueble->get('disponible')
         ];
 
