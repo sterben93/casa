@@ -26,10 +26,7 @@ $(document).ready(function () {
     });
 });
 
-/**
- * Verifica el inicio de sesion exitoso
- */
-var inicioSesion = function (json) {
+function inicioSesion(json) {
     alert(json.logeo);
     if (json.logeo == 1) {
         $cookie('sesion', 'true');

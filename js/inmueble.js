@@ -26,15 +26,24 @@ function llenarContenido(json) {
     $('.jcarousel-wrapper').append('<p class="jcarousel-pagination"></p>');
     var inmueble=json.inmueble;
     $("#descripcion").html(inmueble.descripcion);
-    $("#servicio").html(inmueble.servicio);
+    $("#servicio").html(tipoServicios(inmueble.servicio));
     $("#direccion").html(inmueble.direccion);
     $("#colonia").html(inmueble.colonia);
-    $("#codigo_postal").html(inmueble.codigopostal);
+    $("#codigo_postal").html(inmueble.codigoPostal);
     $("#cuartos").html(inmueble.cuartos);
     $("#banos").html(inmueble.banos);
     $("#estacionamientos").html(inmueble.estacionamientos);
     $("#plantas").html(inmueble.plantas);
-    $("#precio").html(inmueble.precio);
-    $("#fecha").html(inmueble.fecha);
+    $("#precio").html('$ '+inmueble.precio);
+    var date = new Date();
+    $("#fecha").html(inmueble.fecha+date.getDate());
     $("#disponible").html(inmueble.disponible);
+}
+
+function tipoServicios(servicio){
+    if(servicio==1){
+        return 'Venta';
+    }else {
+        return 'Renta';
+    }
 }

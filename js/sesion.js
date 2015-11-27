@@ -21,6 +21,8 @@ function sesion() {
         ajaxPHP('http://localhost/apiParse/WebServicesUsuario.php', { numero: 2 }, cerrarSesion);
         $menu1.show();
         $menu2.hide();
+        $removeCookie('sesion');
+        $removeCookie('id');
     });
 }
 

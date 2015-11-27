@@ -45,6 +45,7 @@ and open the template in the editor.
             //solicitaCasa();
             //getImagenesInmuebles();
             notificaciones();
+        echo 'hola';
             //autorizarContactos();
             function autorizarContactos(){
                 iniciaSesion();
@@ -55,7 +56,7 @@ and open the template in the editor.
             function notificaciones(){
                 $query = new ParseQuery("_User");
                 $user= $query->get("LLLdzjvZ44");//ivan X8gPmNBW1R
-                $notificaciones=User::getNotificaciones($user); //LLLdzjvZ44 yo
+                $notificaciones=APIUsuario::getNotificaciones($user); //LLLdzjvZ44 yo
                 $fin=count($notificaciones);
                 echo "Notificaciones:<br>";
                 for($i=0;$i<$fin;$i++){
@@ -74,7 +75,7 @@ and open the template in the editor.
                 $query = new ParseQuery("_User");
                 $user= $query->get("LLLdzjvZ44"); 
                 echo "<br>Solicitando casa: <br>";
-                $resp= User::usuarioSolicitaCasa($user, $inmueble);
+                $resp= APIUsuario::usuarioSolicitaCasa($user, $inmueble);
                 echo $resp."<br>";
             }
             function guardaImagenRelacion(){
