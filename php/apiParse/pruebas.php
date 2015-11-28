@@ -12,7 +12,7 @@ and open the template in the editor.
     <body>
         <?php
             require 'vendor/autoload.php';
-            //require 'APIUsuario.php';
+            require 'APIUsuario.php';
             //require 'APIInmueble.php';
             use Parse\ParseClient;
             ParseClient::initialize('ve3SsAciKVt8GwhmLDCzW9rQ6EkPj8ai3pWcp3Is', 'zt0dVKAQwyRTAOFkfFj5d9jzDWAH9fjaJsUR5fhD', 'QpnJBJkOEp3VmEbcaAX8r6HDixj2wCUNQ42e1c4N');
@@ -39,19 +39,18 @@ and open the template in the editor.
             APIUsuario::cerrarSesion();*/
             //$objeto= $consulta->get("Dxl8ifn73z");
             //$objeto->destroy();
-            muestraUsuarios();
-            //calificaUsuario(); //innercircle1
-            //getCalificacionUsuario(); //luzvivanco1#
+            //muestraUsuarios();
+            //calificaUsuario(); 
+            //getCalificacionUsuario(); 
             //solicitaCasa();
             //getImagenesInmuebles();
+            autorizarContactos();
             notificaciones();
-        echo 'hola';
-            //autorizarContactos();
             function autorizarContactos(){
                 iniciaSesion();
                 $query = new ParseQuery("Inmueble");
                 $inmueble = $query->get("ECBYtmXxj6");
-                User::autorizarContacto($inmueble);
+                APIUsuario::autorizarContacto($inmueble);
             }
             function notificaciones(){
                 $query = new ParseQuery("_User");
@@ -91,7 +90,7 @@ and open the template in the editor.
                 $query = new ParseQuery("_User");
                 $usuario =  $query->get("X8gPmNBW1R");
                 $usuarioCalificado= $query->get("xfRgPRI2Ta");
-                User::calificaUsuario($usuario,$usuarioCalificado, 6);
+                APIUsuario::calificaUsuario($usuario,$usuarioCalificado, 8);
             }
             function getCalificacionUsuario(){
                 $query = new ParseQuery("_User");
