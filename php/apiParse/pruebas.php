@@ -44,13 +44,31 @@ and open the template in the editor.
             //getCalificacionUsuario(); 
             //solicitaCasa();
             //getImagenesInmuebles();
-            autorizarContactos();
+            //autorizarContactos();
+            favoritos();
             notificaciones();
+            function favoritos(){
+                $usuario = APIUsuario::iniciarSesion("Jose Alfredo Rey Mendez", "1234");
+                $query = new ParseQuery("Inmueble");
+                $inmueble = $query->get("ECBYtmXxj6");
+                APIUsuario::agregarAFavoritos($inmueble);
+                
+                $favoritos= APIUsuario::getFavoritos();
+                $fin=count($favoritos);
+                echo "Las casas favoritas de ". $usuario." son:<br>";
+                for($i=0;$i<$fin;$i++){
+                    $inm= $favoritos[$i]->get("idInmueble");
+                    $inm->fetch();
+                    echo $inm->get("direccion")."<br>";
+                }
+                APIUsuario::cerrarSesion();
+            }
             function autorizarContactos(){
                 iniciaSesion();
                 $query = new ParseQuery("Inmueble");
                 $inmueble = $query->get("ECBYtmXxj6");
                 APIUsuario::autorizarContacto($inmueble);
+                APIUsuario::cerrarSesion();
             }
             function notificaciones(){
                 $query = new ParseQuery("_User");
