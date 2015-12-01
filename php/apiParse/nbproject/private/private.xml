@@ -7,5 +7,10 @@
             <file>file:/C:/Users/Manuel%20Angel%20Muñoz%20S/Documents/GitHub/casa/php/apiParse/pruebas.php</file>
             <file>file:/C:/Users/Manuel%20Angel%20Muñoz%20S/Documents/GitHub/casa/php/apiParse/APIUsuario.php</file>
         </group>
+        <group name="PHP">
+            <file>file:/C:/xampp/htdocs/casa/php/apiParse/vendor/parse/php-sdk/src/Parse/ParseClient.php</file>
+            <file>file:/C:/xampp/htdocs/casa/php/apiParse/pruebas.php</file>
+            <file>file:/C:/xampp/htdocs/casa/php/apiParse/APIUsuario.php</file>
+        </group>
     </open-files>
 </project-private>
