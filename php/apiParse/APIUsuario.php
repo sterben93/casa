@@ -6,6 +6,8 @@ require 'vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
 use Parse\ParseUser;
 use Parse\ParseException;
 use Parse\ParseClient;
+use Parse\ParseQuery;
+use Parse\ParseObject;
 
 class APIUsuario {
 
@@ -221,7 +223,7 @@ class APIUsuario {
         //Set this to true if SMTP host requires authentication to send email
         $email->SMTPAuth = true;
         //Provide username and password
-        $email->Username = "manu.ang6587@gmail.com"; /*cambiar esto, si pones tu cuenta de google te dira que bloqueo esta aplicacion, tienes que activar el uso de aplicaciones no seguras para que esto jale*/
+        $email->Username = ""; /*cambiar esto, si pones tu cuenta de google te dira que bloqueo esta aplicacion, tienes que activar el uso de aplicaciones no seguras para que esto jale*/
         $email->Password = "";   //https://www.google.com/settings/security/lesssecureapps
         //If SMTP requires TLS encryption then set it
         $email->SMTPSecure = "tls";
@@ -290,7 +292,7 @@ class APIUsuario {
                     $user= $res[$i]->get("idUsuario");
                     $user->fetch();
                     $mensaje= "Ahora puedes ponerte en contacto con el usuario ". $user->get("username"). 
-                            "que se interesa en la casa que esta en ".$inm->get("direccion").". <br>"; 
+                            " que se interesa en la casa que esta en ".$inm->get("direccion").". <br>";
                     $mensaje.="Puedes contactar al usuario con el correo: ".$user->get("email").".<br>";
                     //echo $mensaje;
                     $notificaciones[]=new Notificacion($mensaje,Notificacion::CONTACTO_NUEVO,$inm);
@@ -364,10 +366,40 @@ class APIUsuario {
                     .$inmueble->get("direccion").". Puedes ponerte en contacto con el a traves de este correo: "
                     .$arrendador->get("email").".";
             APIUsuario::enviarNotificacion($mail,$asunto,$txt);
-            echo "se envio correo informativo a ". $mail. " con el contenido: <br>". $txt." <br>";
+            //echo "se envio correo informativo a ". $mail. " con el contenido: <br>". $txt." <br>";
             $res[$i]->set("validado", true);
             $res[$i]->save();
         }
+    }
+    public static function agregarAFavoritos($inmueble){
+        $usuario= APIUsuario::usuarioActual();
+        if (!$usuario->isAuthenticated()) {
+            return false;
+        }
+        $query = new ParseQuery("Favoritos");
+        $query ->equalTo("idInmueble", $inmueble);
+        $query ->equalTo("idUsuario", $usuario);
+        if($query->count()>0) return ;
+
+        $favoritos= new ParseObject("Favoritos");
+        $favoritos->set("idInmueble", $inmueble);
+        $favoritos->set("idUsuario", $usuario);
+        $favoritos->save();
+    }
+    public static function getFavoritos(){
+        $usuario= APIUsuario::usuarioActual();
+        if (!$usuario->isAuthenticated()) {
+            return false;
+        }
+        $favoritos= new ParseQuery("Favoritos");
+        $favoritos->equalTo("idUsuario", $usuario);
+        $res= $favoritos->find();
+        return $res;
+    }
+    public static function quitarFavoritos($inmueble){
+        $fav= new ParseQuery("Favoritos");
+        $reg= $fav->get($inmueble);
+        $reg->destroy();
     }
 }
 

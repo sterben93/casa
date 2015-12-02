@@ -12,7 +12,7 @@ and open the template in the editor.
     <body>
         <?php
             require 'vendor/autoload.php';
-            //require 'APIUsuario.php';
+            require 'APIUsuario.php';
             //require 'APIInmueble.php';
             use Parse\ParseClient;
             ParseClient::initialize('ve3SsAciKVt8GwhmLDCzW9rQ6EkPj8ai3pWcp3Is', 'zt0dVKAQwyRTAOFkfFj5d9jzDWAH9fjaJsUR5fhD', 'QpnJBJkOEp3VmEbcaAX8r6HDixj2wCUNQ42e1c4N');
@@ -40,17 +40,46 @@ and open the template in the editor.
             //$objeto= $consulta->get("Dxl8ifn73z");
             //$objeto->destroy();
             //muestraUsuarios();
+<<<<<<< HEAD
             //calificaUsuario(); //innercircle1
             //getCalificacionUsuario(); //luzvivanco1#
             //solicitaCasa();
             //getImagenesInmuebles();
             notificaciones();
+=======
+            //calificaUsuario();
+            //getCalificacionUsuario();
+            //solicitaCasa();
+            //getImagenesInmuebles();
+>>>>>>> origin/master
             //autorizarContactos();
+            favoritos();
+            notificaciones();
+            function favoritos(){
+                $usuario = APIUsuario::iniciarSesion("Jose Alfredo Rey Mendez", "1234");
+                $query = new ParseQuery("Inmueble");
+                $inmueble = $query->get("ECBYtmXxj6");
+                APIUsuario::agregarAFavoritos($inmueble);
+
+                $favoritos= APIUsuario::getFavoritos();
+                $fin=count($favoritos);
+                echo "Las casas favoritas de ". $usuario." son:<br>";
+                for($i=0;$i<$fin;$i++){
+                    $inm= $favoritos[$i]->get("idInmueble");
+                    $inm->fetch();
+                    echo $inm->get("direccion")."<br>";
+                }
+                APIUsuario::cerrarSesion();
+            }
             function autorizarContactos(){
                 iniciaSesion();
                 $query = new ParseQuery("Inmueble");
                 $inmueble = $query->get("ECBYtmXxj6");
                 APIUsuario::autorizarContacto($inmueble);
+<<<<<<< HEAD
+=======
+                APIUsuario::cerrarSesion();
+>>>>>>> origin/master
             }
             function notificaciones(){
                 $query = new ParseQuery("_User");
@@ -90,8 +119,12 @@ and open the template in the editor.
                 $query = new ParseQuery("_User");
                 $usuario =  $query->get("X8gPmNBW1R");
                 $usuarioCalificado= $query->get("xfRgPRI2Ta");
+<<<<<<< HEAD
                 APIUsuario::calificaUsuario($usuario,$usuarioCalificado, 7);
                 echo 'se califico el usuario';
+=======
+                APIUsuario::calificaUsuario($usuario,$usuarioCalificado, 8);
+>>>>>>> origin/master
             }
             function getCalificacionUsuario(){
                 $query = new ParseQuery("_User");
