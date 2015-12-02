@@ -39,19 +39,18 @@ and open the template in the editor.
             APIUsuario::cerrarSesion();*/
             //$objeto= $consulta->get("Dxl8ifn73z");
             //$objeto->destroy();
-            muestraUsuarios();
+            //muestraUsuarios();
             //calificaUsuario(); //innercircle1
             //getCalificacionUsuario(); //luzvivanco1#
             //solicitaCasa();
             //getImagenesInmuebles();
             notificaciones();
-        echo 'hola';
             //autorizarContactos();
             function autorizarContactos(){
                 iniciaSesion();
                 $query = new ParseQuery("Inmueble");
                 $inmueble = $query->get("ECBYtmXxj6");
-                User::autorizarContacto($inmueble);
+                APIUsuario::autorizarContacto($inmueble);
             }
             function notificaciones(){
                 $query = new ParseQuery("_User");
@@ -91,7 +90,8 @@ and open the template in the editor.
                 $query = new ParseQuery("_User");
                 $usuario =  $query->get("X8gPmNBW1R");
                 $usuarioCalificado= $query->get("xfRgPRI2Ta");
-                User::calificaUsuario($usuario,$usuarioCalificado, 6);
+                APIUsuario::calificaUsuario($usuario,$usuarioCalificado, 7);
+                echo 'se califico el usuario';
             }
             function getCalificacionUsuario(){
                 $query = new ParseQuery("_User");

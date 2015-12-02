@@ -18,7 +18,6 @@ function ajaxPHP(urlPHP,jsonData,funcion){
             type : 'POST',
 			dataType : 'json',
 			success : function(json) {
-                alert('hola ajax');
                 funcion(json);
 			},
 	});
@@ -52,7 +51,6 @@ function construirContenido(jsonArray){
     crearPaginacion(jsonArray.paginacion);
 }
 
-
 function crearPaginacion(json){
     var paginacion=json.pag;
     var display;
@@ -61,16 +59,4 @@ function crearPaginacion(json){
     }else{
         display=5;
     }
-    $('#pagination-demo').twbsPagination({
-        totalPages: paginacion,
-        visiblePages: display,
-        onPageClick: function (event, page) {
-            $('#page-content').text('Page ' + page);
-        }
-    });
 }
-
-/**
- * Verifica el inicio de sesion exitoso
- */
-

@@ -45,8 +45,11 @@
     color: white;
 }
 
-
-
+#example>ul>li{
+    display: inline;
+    border: 1px solid black;
+    padding: 2px;
+}
 
 
 @media screen and (min-width: 481px) {
