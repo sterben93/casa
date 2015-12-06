@@ -373,7 +373,6 @@ class APIUsuario {
         }
     }
     public static function agregarAFavoritos($inmueble){
-        APIUsuario::enviarNotificacion("manu.ang6587@gmail.com", "asunto", "este es el mensaje\nholis");
         $usuario= APIUsuario::usuarioActual();
         if (!$usuario->isAuthenticated()) {
             return false;
