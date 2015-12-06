@@ -47,7 +47,7 @@ and open the template in the editor.
             //autorizarContactos();
             favoritos();
             notificaciones();
-            function favoritos(){
+            function favoritos(){//( ͡° ͜ʖ ͡°)
                 $usuario = APIUsuario::iniciarSesion("Jose Alfredo Rey Mendez", "1234");
                 $query = new ParseQuery("Inmueble");
                 $inmueble = $query->get("ECBYtmXxj6");
@@ -100,6 +100,17 @@ and open the template in the editor.
                 $inmueble = $consulta->get("Wkz7fvW6qG");
                 $consulta= new ParseQuery("Imagenes");
                 $imagen= $consulta->first();
+                $relacion= $inmueble->getRelation("imagenes");
+                $relacion->add($imagen);
+                $inmueble->save();
+            }
+            function agregarImagenInmueble($inmueble, $imagen){
+                /*ejemplo: 
+                $consulta= new ParseQuery("Inmueble");
+                $inmueble = $consulta->get("Wkz7fvW6qG");
+                $consulta= new ParseQuery("Imagenes");
+                $imagen= $consulta->first();
+                 */
                 $relacion= $inmueble->getRelation("imagenes");
                 $relacion->add($imagen);
                 $inmueble->save();
