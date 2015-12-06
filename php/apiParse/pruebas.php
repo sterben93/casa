@@ -40,10 +40,18 @@ and open the template in the editor.
             //$objeto= $consulta->get("Dxl8ifn73z");
             //$objeto->destroy();
             //muestraUsuarios();
-            //calificaUsuario(); 
-            //getCalificacionUsuario(); 
+<<<<<<< HEAD
+            //calificaUsuario(); //innercircle1
+            //getCalificacionUsuario(); //luzvivanco1#
             //solicitaCasa();
             //getImagenesInmuebles();
+            notificaciones();
+=======
+            //calificaUsuario();
+            //getCalificacionUsuario();
+            //solicitaCasa();
+            //getImagenesInmuebles();
+>>>>>>> origin/master
             //autorizarContactos();
             favoritos();
             notificaciones();
@@ -52,7 +60,7 @@ and open the template in the editor.
                 $query = new ParseQuery("Inmueble");
                 $inmueble = $query->get("ECBYtmXxj6");
                 APIUsuario::agregarAFavoritos($inmueble);
-                
+
                 $favoritos= APIUsuario::getFavoritos();
                 $fin=count($favoritos);
                 echo "Las casas favoritas de ". $usuario." son:<br>";
@@ -68,7 +76,10 @@ and open the template in the editor.
                 $query = new ParseQuery("Inmueble");
                 $inmueble = $query->get("ECBYtmXxj6");
                 APIUsuario::autorizarContacto($inmueble);
+<<<<<<< HEAD
+=======
                 APIUsuario::cerrarSesion();
+>>>>>>> origin/master
             }
             function notificaciones(){
                 $query = new ParseQuery("_User");
@@ -119,7 +130,12 @@ and open the template in the editor.
                 $query = new ParseQuery("_User");
                 $usuario =  $query->get("X8gPmNBW1R");
                 $usuarioCalificado= $query->get("xfRgPRI2Ta");
+<<<<<<< HEAD
+                APIUsuario::calificaUsuario($usuario,$usuarioCalificado, 7);
+                echo 'se califico el usuario';
+=======
                 APIUsuario::calificaUsuario($usuario,$usuarioCalificado, 8);
+>>>>>>> origin/master
             }
             function getCalificacionUsuario(){
                 $query = new ParseQuery("_User");

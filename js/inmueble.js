@@ -35,8 +35,7 @@ function llenarContenido(json) {
     $("#estacionamientos").html(inmueble.estacionamientos);
     $("#plantas").html(inmueble.plantas);
     $("#precio").html('$ '+inmueble.precio);
-    var date = new Date();
-    $("#fecha").html(inmueble.fecha+date.getDate());
+    $("#fecha").html(inmueble.fechaPublicacion.date);
     $("#disponible").html(inmueble.disponible);
 }
 

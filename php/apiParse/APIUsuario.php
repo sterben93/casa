@@ -293,7 +293,7 @@ class APIUsuario {
                     $user= $res[$i]->get("idUsuario");
                     $user->fetch();
                     $mensaje= "Ahora puedes ponerte en contacto con el usuario ". $user->get("username"). 
-                            " que se interesa en la casa que esta en ".$inm->get("direccion").". <br>"; 
+                            " que se interesa en la casa que esta en ".$inm->get("direccion").". <br>";
                     $mensaje.="Puedes contactar al usuario con el correo: ".$user->get("email").".<br>";
                     //echo $mensaje;
                     $notificaciones[]=new Notificacion($mensaje,Notificacion::CONTACTO_NUEVO,$inm);
@@ -381,11 +381,11 @@ class APIUsuario {
         $query ->equalTo("idInmueble", $inmueble);
         $query ->equalTo("idUsuario", $usuario);
         if($query->count()>0) return ;
-        
+
         $favoritos= new ParseObject("Favoritos");
         $favoritos->set("idInmueble", $inmueble);
         $favoritos->set("idUsuario", $usuario);
-        $favoritos->save();        
+        $favoritos->save();
     }
     public static function getFavoritos(){
         $usuario= APIUsuario::usuarioActual();
