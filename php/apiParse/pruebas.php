@@ -40,6 +40,7 @@ and open the template in the editor.
             //$objeto= $consulta->get("Dxl8ifn73z");
             //$objeto->destroy();
             //muestraUsuarios();
+<<<<<<< HEAD
 
             //calificaUsuario(); //innercircle1
             //getCalificacionUsuario(); //luzvivanco1#
@@ -56,6 +57,19 @@ and open the template in the editor.
             
             
             function favoritos(){
+=======
+            //solicitaCasa();
+            //getImagenesInmuebles();
+            notificaciones();
+            //calificaUsuario();
+            //getCalificacionUsuario();
+            //solicitaCasa();
+            //getImagenesInmuebles();
+            //autorizarContactos();
+            favoritos();
+            notificaciones();
+            function favoritos(){//( ͡° ͜ʖ ͡°)
+>>>>>>> origin/master
                 $usuario = APIUsuario::iniciarSesion("Jose Alfredo Rey Mendez", "1234");
                 $query = new ParseQuery("Inmueble");
                 $inmueble = $query->get("ECBYtmXxj6");
@@ -76,9 +90,13 @@ and open the template in the editor.
                 $query = new ParseQuery("Inmueble");
                 $inmueble = $query->get("ECBYtmXxj6");
                 APIUsuario::autorizarContacto($inmueble);
+<<<<<<< HEAD
 
                 APIUsuario::cerrarSesion();
 
+=======
+                APIUsuario::cerrarSesion();
+>>>>>>> origin/master
             }
             function notificaciones(){
                 $query = new ParseQuery("_User");
@@ -114,16 +132,32 @@ and open the template in the editor.
                 $relacion->add($imagen);
                 $inmueble->save();
             }
+            function agregarImagenInmueble($inmueble, $imagen){
+                /*ejemplo:
+                $consulta= new ParseQuery("Inmueble");
+                $inmueble = $consulta->get("Wkz7fvW6qG");
+                $consulta= new ParseQuery("Imagenes");
+                $imagen= $consulta->first();
+                 */
+                $relacion= $inmueble->getRelation("imagenes");
+                $relacion->add($imagen);
+                $inmueble->save();
+            }
             function calificaUsuario(){
                 $query = new ParseQuery("_User");
                 $usuario =  $query->get("X8gPmNBW1R");
                 $usuarioCalificado= $query->get("xfRgPRI2Ta");
+<<<<<<< HEAD
 
                 APIUsuario::calificaUsuario($usuario,$usuarioCalificado, 7);
                 echo 'se califico el usuario';
 
                 APIUsuario::calificaUsuario($usuario,$usuarioCalificado, 8);
 
+=======
+                APIUsuario::calificaUsuario($usuario,$usuarioCalificado, 7);
+                echo 'se califico el usuario';
+>>>>>>> origin/master
             }
             function getCalificacionUsuario(){
                 $query = new ParseQuery("_User");

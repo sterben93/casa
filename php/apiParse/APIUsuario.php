@@ -219,17 +219,18 @@ class APIUsuario {
         //Set PHPMailer to use SMTP.
         $email->isSMTP();
         //Set SMTP host name
-        $email->Host = "smtp.gmail.com";
+        $email->Host = "smtp.live.com";
+        $email->Port = 587;
         //Set this to true if SMTP host requires authentication to send email
         $email->SMTPAuth = true;
         //Provide username and password
-        $email->Username = ""; /*cambiar esto, si pones tu cuenta de google te dira que bloqueo esta aplicacion, tienes que activar el uso de aplicaciones no seguras para que esto jale*/
-        $email->Password = "";   //https://www.google.com/settings/security/lesssecureapps
+        $email->Username = "conforthouse@outlook.com"; /*cambiar esto, si pones tu cuenta de google te dira que bloqueo esta aplicacion, tienes que activar el uso de aplicaciones no seguras para que esto jale*/
+        $email->Password = "hola12345678";   //https://www.google.com/settings/security/lesssecureapps
         //If SMTP requires TLS encryption then set it
         $email->SMTPSecure = "tls";
         //Set TCP port to connect to
         $email->Port = 587;
-        $email->From = "conforthouse@gmail.com";
+        $email->From = "conforthouse@outlook.com";
         $email->FromName = "Confort house";
         $email->addAddress($mail, "Recepient Name");
         $email->isHTML(false);
