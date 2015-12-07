@@ -19,21 +19,23 @@ $(document).ready(function () {
 		    tooltipAnimate: true
     });
     $('#iniciar').click(function () {
-        $usuario = $("#usuario").val();
-        $password = $("#password").val();
-        json = { 'numero': 1, 'usuario': $usuario, 'password': $password };
-        ajaxPHP('http://localhost/apiParse2/WebServicesUsuario.php', json, inicioSesion);
+        inputArray=[];
+        $('input').each(function (idx, input) {
+            inputArray[idx]=input.value;
+        });
+        texto = '{"numero":"1", "usuario":"'+inputArray[0]+'", "password":"'+inputArray[1]+'"}';
+        json=JSON.parse(texto);
+        ajaxPHP('http://localhost/apiParse/WSUsuario.php', json, inicioSesion);
     });
 });
 
 function inicioSesion(json) {
-    alert(json.logeo);
-    if (json.logeo == 1) {
+    if (json.mensaje == 1) {
         $cookie('sesion', 'true');
         $cookie('id', json.id);
         window.location.href = "index.html";
         window.location.reload;
     } else {
-        $('#mensaje').html('<p>' + json.error + '<p>');
+        $('#mensaje').html('<p>' + json.mensaje + '<p>');
     }
 }

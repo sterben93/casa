@@ -45,9 +45,9 @@ class APIInmueble {
      * @param type $query
      * @return type
      */
-    public function consultaInmuebles($numPage, $query) {
+    public static function consultaInmuebles($numPage, $query) {
         $limite = $numPage * 10;
-        $inicio = $limite - 9;
+        $inicio = $limite - 10;
 
         $json = array();
         $jsonArray = array();
@@ -61,7 +61,7 @@ class APIInmueble {
             $descripcion = $inmueble->get('descripcion');
             $precio = $inmueble->get('precio');
             $json['id'] = $id;
-            $urlImg = urlImagen($inmueble);
+            $urlImg = APIInmueble::urlImagen($query);
             $json['descripcion'] = $descripcion;
             $json['precio'] = $precio;
             $json['url'] = $urlImg;
@@ -76,7 +76,7 @@ class APIInmueble {
      * @return string $url
      */
     
-    public function urlImagen($inmueble){
+    public static function urlImagen($inmueble){
         $relation =  $inmueble ->getRelation("imagenes");
         $query = $relation ->getQuery(); 
         $imagen= $query->first();
@@ -240,5 +240,4 @@ class APIInmueble {
         $inmueble->save();
     }
 }
-echo 'hola';
 ?>

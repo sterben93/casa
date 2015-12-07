@@ -40,21 +40,21 @@ and open the template in the editor.
             //$objeto= $consulta->get("Dxl8ifn73z");
             //$objeto->destroy();
             //muestraUsuarios();
-<<<<<<< HEAD
+
             //calificaUsuario(); //innercircle1
             //getCalificacionUsuario(); //luzvivanco1#
             //solicitaCasa();
             //getImagenesInmuebles();
             notificaciones();
-=======
+//favoritos();
             //calificaUsuario();
             //getCalificacionUsuario();
             //solicitaCasa();
-            //getImagenesInmuebles();
->>>>>>> origin/master
+            getImagenesInmuebles();
+
             //autorizarContactos();
-            favoritos();
-            notificaciones();
+            
+            
             function favoritos(){
                 $usuario = APIUsuario::iniciarSesion("Jose Alfredo Rey Mendez", "1234");
                 $query = new ParseQuery("Inmueble");
@@ -76,10 +76,9 @@ and open the template in the editor.
                 $query = new ParseQuery("Inmueble");
                 $inmueble = $query->get("ECBYtmXxj6");
                 APIUsuario::autorizarContacto($inmueble);
-<<<<<<< HEAD
-=======
+
                 APIUsuario::cerrarSesion();
->>>>>>> origin/master
+
             }
             function notificaciones(){
                 $query = new ParseQuery("_User");
@@ -119,12 +118,12 @@ and open the template in the editor.
                 $query = new ParseQuery("_User");
                 $usuario =  $query->get("X8gPmNBW1R");
                 $usuarioCalificado= $query->get("xfRgPRI2Ta");
-<<<<<<< HEAD
+
                 APIUsuario::calificaUsuario($usuario,$usuarioCalificado, 7);
                 echo 'se califico el usuario';
-=======
+
                 APIUsuario::calificaUsuario($usuario,$usuarioCalificado, 8);
->>>>>>> origin/master
+
             }
             function getCalificacionUsuario(){
                 $query = new ParseQuery("_User");

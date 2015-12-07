@@ -1,31 +1,28 @@
 <script type="text/javascript" src="js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="js/funciones.js"></script>
 <script type="text/javascript" src="js/peticiones.js"></script>
 <div id="asi" class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
     <div id="filtros">
-        <form id="fomularioFiltros">
+        <div id="fomularioFiltros">
             <legend>Filtros Busqueda</legend>
             <div class="form-group">
                 <label for="precios">Precios</label>
-                <input type="number" name="preciomin" class="form-control" placeholder="Precio Min">
-                <br/>
-                <input type="number" name="preciomax" class="form-control" placeholder="Precio Max">
+                <input type="number" name="preciomax" class="datosF form-control" placeholder="Precio Max">
                 <br/>
                 <label for="cuartos">N° Cuartos</label>
-                <input type="number" name="cuartos" class="form-control" id="cuartos" placeholder="Cuartos">
+                <input type="number" name="cuartos" class="datosF form-control" id="cuartos" placeholder="Cuartos">
                 <br/>
                 <label for="banos">N° Baños</label>
-                <input type="number" name="banos" class="form-control" id="banos" placeholder="N° Baños">
-                <br/>
-                <label for="recamaras">N° Recamaras</label>
-                <input type="number" name="recamaras" class="form-control" id="recamaras" placeholder="N° Recamaras">
+                <input type="number" name="banos" class="datosF form-control" id="banos" placeholder="N° Baños">
                 <br/>
                 <label for="plantas">N° Plantas</label>
-                <input type="number" name="plantas" class="form-control" id="plantas" placeholder="N° Plantas">
+                <input type="number" name="plantas" class="datosF form-control" id="plantas" placeholder="N° Plantas">
                 <br/>
                 <div class="col-xs-offset-9 col-sm-offset-7 col-md-offset-8 col-lg-offset-9">
                     <button type="submit" id="btfiltros" class="btn btn-primary">Enviar</button>
                 </div>
             </div>
-        </form>
+            <p>Nota: Usted puede llenar o no todos lo campos, la busqueda se realizara por los campo llenos o solicitados.</p>
+        </div>
     </div>
 </div>

@@ -68,7 +68,7 @@ function pestanaPublica() {
     $pesfav.removeClass('active');
     $pesnoti.removeClass('active');
     $pespub.addClass('active');
-    $('#contenido').load("http://localhost/casas/publica.html");
+    $('#contenido').load("http://localhost/casas/publicaInmueble.html");
 }
 
 /**

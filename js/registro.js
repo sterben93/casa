@@ -28,14 +28,14 @@ function reguistraUsuario() {
     texto += '"' + $('select').attr('id') + '":"' + $('select').val() + '"}';
     var json = JSON.parse(texto);
     texto = '{"numero":"3",';
-    ajaxPHP('http://localhost/apiParse/WebServicesUsuario.php', json, verificaReguistro);
+    ajaxPHP('http://localhost/apiParse/WSUsuario.php', json, verificaReguistro);
 }
 
 /**
  * Verifica si el reguistro del usuario se llevo acabo o no
  */
 function verificaReguistro(json) {
-    if (json.reg == 1) {
+    if (json.mensaje == 'Registro Exitoso') {
         alert(json.mensaje);
         window.location.href = 'index.html';
         window.location.reload;

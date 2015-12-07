@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
@@ -6,21 +5,3 @@
         <group/>
     </open-files>
 </project-private>
-=======
-<?xml version="1.0" encoding="UTF-8"?>
-<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
-    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/Manuel%20Angel%20Muñoz%20S/Documents/GitHub/casa/php/apiParse/APIInmueble.php</file>
-            <file>file:/C:/Users/Manuel%20Angel%20Muñoz%20S/Documents/GitHub/casa/php/apiParse/pruebas.php</file>
-            <file>file:/C:/Users/Manuel%20Angel%20Muñoz%20S/Documents/GitHub/casa/php/apiParse/APIUsuario.php</file>
-        </group>
-        <group name="PHP">
-            <file>file:/C:/xampp/htdocs/casa/php/apiParse/vendor/parse/php-sdk/src/Parse/ParseClient.php</file>
-            <file>file:/C:/xampp/htdocs/casa/php/apiParse/pruebas.php</file>
-            <file>file:/C:/xampp/htdocs/casa/php/apiParse/APIUsuario.php</file>
-        </group>
-    </open-files>
-</project-private>
->>>>>>> origin/master

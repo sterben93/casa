@@ -1,0 +1,63 @@
+<!doctype html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Confor House</title>
+    <meta name="description" content="My Parse App">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/progression.css">
+    <script type="text/javascript" src="js/jquery-1.11.2.js"></script>
+    <script type="text/javascript" src="js/progression.js"></script>
+    <script type="text/javascript" src="js/publica.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://www.parsecdn.com/js/parse-latest.js"></script>
+    <script type="text/javascript" src="js/parse.js"></script>
+</head>
+
+<body>
+    <div id="formularioInm">
+        <legend>Reguistro del Inmueble</legend>
+        <select name="servicio" id="servicio" class="datos form-control" required data-progression data-helper="Servicio que se ofrece por el inmueble">
+            <option value="0">Tipo de servicio</option>
+            <option value="1">Venta</option>
+            <option value="2">Renta</option>
+            <option value="3">Pension</option>
+            <option value="4">A Tratar</option>
+        </select>
+        <div class="form-group">
+            <br/>
+            <input type="number" id="codigoPostal" class="datos form-control" placeholder="Codigo Postal" required data-progression data-helper="Codigo Postal del Inmueble solo acepta datos numericos">
+            <br/>
+            <input type="text" id="colonia" placeholder="Colonia" class="datos form-control" required data-progression data-helper="Colonia donde reside el inmueble. Solo acepta datos alfanumericos">
+            <br/>
+            <input type="text" id="direccion" placeholder="Direccion" class="datos form-control" required data-progression data-helper="Acepta datos alfanumericos">
+            <br/>
+            <input type="number" id="numeroBathrooms" max="5" placeholder="Numero de Baños" class="datos form-control" required data-progression
+            data-helper="Numero de baños que dispone del inmueble acepta datos numericos">
+            <br/>
+            <input type="number" id="numeroCuartos" max="10" placeholder="Numero de Cuartos" class="datos form-control" required data-progression
+            data-helper="Numero de cuartos que dispone del inmueble acepta datos numericos">
+            <br/>
+            <input type="number" id="numeroEstacionamientos" max="10" placeholder="Numero de Estacionamientos" class="datos form-control"
+            required data-progression data-helper="Numero de estacionamientos que dispone del inmueble acepta datos numericos">
+            <br/>
+            <input type="number" id="numeroPlantas" max="5" placeholder="Numero de Plantas" class="datos form-control" required data-progression
+            data-helper="Numero de pisos que dispone del inmueble acepta datos numericos">
+            <br/>
+            <input type="number" id="precio" placeholder="Precio del Inmueble" class="datos form-control" required data-progression data-helper="Precio Asignado por el inmueble">
+            <br/>
+            <textarea rows="20" id='descripcion' class="datos form-control" required data-progression data-helper="En este campo se describe el Inmueble">
+            </textarea>
+            <br/>
+            <input type="file" id="profilePhotoFileUpload" multiple class="form-control" required data-progression data-helper="Solo se puede subir 5 imagenes por publicacion">
+            <br/>
+            <div>
+                <output id="list"></output>
+            </div>
+            <br/>
+            <button class="btn btn-primary" id="enviar">Enviar</button>
+        </div>
+    </div>
+</body>
+</html>

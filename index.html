@@ -12,12 +12,7 @@
     <link rel="stylesheet" href="css/styleindex.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel='stylesheet' href='css/progression.css'>
-    <link rel='stylesheet' href='css/documentation.css'>
-    <link rel="stylesheet" href="css/highlight.js/sunburst.css">
-    <link rel="stylesheet" href="css/bootstrap-responsive.css">
     <script type="text/javascript" src="js/jquery-1.11.2.js"></script>
-    <script type="text/javascript" src="js/progression.js"></script>
     <script type="text/javascript" src="js/angular.min.js"></script>
     <script type="text/javascript" src="js/angular-route.min.js"></script>
     <script type="text/javascript" src="js/jquery.cookie.js"></script>
@@ -25,7 +20,6 @@
     <script type="text/javascript" src="js/funciones.js"></script>
     <script type="text/javascript" src="js/sesion.js"></script>
     <script type="text/javascript" src="js/peticiones.js"></script>
-    <script src="js/bootstrap-paginator.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
 </head>
 
@@ -49,7 +43,7 @@
                     <div class="collapse navbar-collapse" id="myNavbar">
                         <form id="formularioBusqueda" class="navbar-form navbar-left" role="search">
                             <div class="form-group">
-                                <select name="inmueble" class="form-control" required="required" data-progression data-helper="Help users through forms by prividing helpful hinters">
+                                <select name="inmueble" class="form-control" required="required">
                                     <option value="None">--Tipo de Inmobiliario</option>
                                     <option value="Casa">Casa</option>
                                     <option value="Departamento">Departamento</option>
@@ -60,13 +54,13 @@
                                 <select name="oferta" class="form-control" required="required">
                                     <option value="0">--Oferta</option>
                                     <option value="1">Renta</option>
-                                    <option value="2" selected>Venta</option>
+                                    <option value="2">Venta</option>
                                     <option value="3">Pension</option>
                                     <option value="4">A tratar</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <input name="colonia" type="text" class="form-control" placeholder="Colonia, municipio">
+                                <input name="colonia" type="text" class="form-control" placeholder="Colonia">
                             </div>
                             <button id="busqueda" type="submit" class="btn btn-default">Buscar</button>
                         </form>
@@ -101,7 +95,7 @@
         <div class="row">
             <!---Aside de filtros de busqueda de la pagina extraido de una plantilla---->
             <aside id="asi" ng-include src="'asiizq.html'">
-
+                
             </aside>
 
             <!---Section de la paguina---->

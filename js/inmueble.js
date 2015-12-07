@@ -9,7 +9,7 @@ $(document).ready(crearContenido);
 function crearContenido() {
     var idCasa =$cookie('idCasa');
     alert(idCasa);
-    ajaxPHP('http://localhost/apiParse/pruebas.php',{'numero':'2','id':idCasa},llenarContenido);
+    ajaxPHP('http://localhost/apiParse/WSInmueble.php',{'numero':'2','id':idCasa},llenarContenido);
 }
 
 /**
@@ -17,6 +17,7 @@ function crearContenido() {
  * @param {object} json Contiene la informcaion para el llenado de la pagina
  */
 function llenarContenido(json) {
+    alert('Hola casa');
     var listaImg=new Array();
     listaImg=json.url;
     listaImg.forEach(function(urlImg,i) {
