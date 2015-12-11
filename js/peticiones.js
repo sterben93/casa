@@ -6,19 +6,24 @@ $(document).ready(function busquedas() {
 });
 
 function consultaFiltros() {
+    var limite = 10;
+    var inicio = 0;
+    var inmueble = Parse.Object.extend("Inmueble");
+    var query = new Parse.Query(inmueble);
     var texto = '{';
     $('.datosF').each(function (idx, input) {
         if (!input.value == "") {
             texto += '"' + input.name + '":"' + input.value + '",';
+            query.equalTo(input.name, parseInt(input.value));
         }
     });
     texto += '"numero":"3", "paginacion":' + 1 + '}';
-    alert(texto);
-    var json = JSON.parse(texto);
     if (texto == '{"numero":"3", "paginacion":' + 1 + '}') {
-        alert('No hay ningun campo lleno');
+        alert('No hay ningun campo lleno en la Busqueda filtros');
     } else {
-        ajaxPHP('http://localhost/apiParse/WSInmueble.php', json, construirContenido);
+        query.descending("createdAt");
+        query.limit(limite);
+        consulta(query,inicio);
     }
 }
 
@@ -41,11 +46,10 @@ function consultaBusqueda() {
     } else {
         query.equalTo("colonia", colonia);
     }
-    query.descending("createdAt");
     if (bandera===2) {
-        alert('No hay ningun campo lleno');
+        alert('No hay ningun campo lleno para realizar la busqueda');
     } else {
-        crearPaginacion(query);
+        query.descending("createdAt");
         query.limit(limite);
         consulta(query,inicio);
     }
