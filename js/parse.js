@@ -1,9 +1,13 @@
-/* global $ */
 /* global Parse */
+/* global $ */
 var arrayID = [];
 var inmuebleTemp;
 
 $(document).ready(inicializa);
+
+/**
+ * inicializa los eventos del boton de registro del inmueble
+ */
 function inicializa() {
     $('#enviar').click(function () {
         Parse.initialize("ve3SsAciKVt8GwhmLDCzW9rQ6EkPj8ai3pWcp3Is", "KW6EKtE5UC6cNj2RWfOyHfGKCA4B8FHG4fV0A0oq");
@@ -11,14 +15,17 @@ function inicializa() {
     });
 }
 
-
+/**
+ * Obtiene la informacion de los campos del formulario para agregarlo a un objeto Parse y poder guardalos en la base
+ * de datos de Parse.com
+ */
 function subirDatos() {
     var Inmueble = Parse.Object.extend("Inmueble");
     var inmueble = new Inmueble();
     $('.datos').each(function (id, datos) {
-        if (datos.type == 'number') {
+        if (datos.type === 'number') {
             inmueble.set(datos.id, parseInt(datos.value));
-        } else if (datos.id == 'servicio') {
+        } else if (datos.id === 'servicio') {
             inmueble.set('servicio', parseInt(datos.value));
         } else {
             inmueble.set(datos.id, datos.value);
@@ -49,6 +56,11 @@ function subirDatos() {
     });
 }
 
+/**
+ * Resibe un objeto Parse con informacion de un inmueble, este metodo obtienen las imagenes agregadas en el formulario para
+ * posteriromente guardarlos en la base de datos de Parse.com
+ * @param Object inmueble
+ */
 function imagenesInmuebles(inmueble) {
     var fileUploadControl = $("#profilePhotoFileUpload")[0];
     var tam = fileUploadControl.files.length;
@@ -60,6 +72,11 @@ function imagenesInmuebles(inmueble) {
     }
 }
 
+/**
+ * El metodo guarda las imagenes en la base de datos de Parse.com
+ * @param Object File parseFile [[Description]]
+ * @param Object inmueble  [[Description]]
+ */
 function subirImagen(parseFile, inmueble) {
     var Imagenes = Parse.Object.extend("Imagenes");
     var imagen = new Imagenes();
@@ -75,6 +92,11 @@ function subirImagen(parseFile, inmueble) {
     });
 }
 
+/**
+ * Crea las relaciones que existe entre un inmueble y susu imagenes
+ * @param Object imagen
+ * @param Object inmueble
+ */
 function relacion(imagen, inmueble) {
     var relation = inmueble.relation("imagenes");
     relation.add(imagen);

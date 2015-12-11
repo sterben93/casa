@@ -22,7 +22,8 @@
     <script type="text/javascript" src="js/jquery-1.11.2.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/jquery.cookie.js"></script>
-    <script type="text/javascript" src="js/funciones.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://www.parsecdn.com/js/parse-latest.js"></script>
     <script type="text/javascript" src="js/inmueble.js"></script>
 </head>
 
@@ -52,11 +53,6 @@
                 <div class="col-xs-12 col-sm-offset-2 col-sm-9 col-md-9 col-lg-9 contenido">
                     <h3>Descripcion:</h3>
                     <p id="descripcion" class="text-justify">
-                        lLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                        nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                        mollit anim id est laborum.
                     </p>
                     <h4>Servicio:</h4>
                     <p id="servicio" class="text-justify">

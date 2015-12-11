@@ -1,4 +1,5 @@
 $(document).ready(publica);
+
 function publica() {
     $("#formularioInm").progression({
             tooltipWidth: '200',

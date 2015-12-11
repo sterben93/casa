@@ -12,14 +12,17 @@
     <link rel="stylesheet" href="css/styleindex.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
     <script type="text/javascript" src="js/jquery-1.11.2.js"></script>
     <script type="text/javascript" src="js/angular.min.js"></script>
     <script type="text/javascript" src="js/angular-route.min.js"></script>
     <script type="text/javascript" src="js/jquery.cookie.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/funciones.js"></script>
+    <script type="text/javascript" src="js/bootstrap-paginator.js"></script>
     <script type="text/javascript" src="js/sesion.js"></script>
-    <script type="text/javascript" src="js/peticiones.js"></script>
+    <script type="text/javascript" src="http://www.parsecdn.com/js/parse-latest.js"></script>
+    <script type="text/javascript" src="js/jquery.paginate.js" ></script>
+    <script type="text/javascript" src="js/funciones.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
 </head>
 
@@ -41,29 +44,20 @@
                 </div>
                 <div>
                     <div class="collapse navbar-collapse" id="myNavbar">
-                        <form id="formularioBusqueda" class="navbar-form navbar-left" role="search">
-                            <div class="form-group">
-                                <select name="inmueble" class="form-control" required="required">
-                                    <option value="None">--Tipo de Inmobiliario</option>
-                                    <option value="Casa">Casa</option>
-                                    <option value="Departamento">Departamento</option>
-                                    <option value="Cuarto">Cuarto</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <select name="oferta" class="form-control" required="required">
-                                    <option value="0">--Oferta</option>
-                                    <option value="1">Renta</option>
-                                    <option value="2">Venta</option>
-                                    <option value="3">Pension</option>
-                                    <option value="4">A tratar</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <input name="colonia" type="text" class="form-control" placeholder="Colonia">
-                            </div>
-                            <button id="busqueda" type="submit" class="btn btn-default">Buscar</button>
-                        </form>
+                    <div class="form-inline" style="padding-top:10px">
+                        <select name="servicio" id="servicio" class="datos form-control">
+                            <option value="0">Tipo de servicio</option>
+                            <option value="1">Venta</option>
+                            <option value="2">Renta</option>
+                            <option value="3">Pension</option>
+                            <option value="4">A Tratar</option>
+                        </select>
+	                <div class="form-group">
+		                <input type="text" class="form-control" placeholder="Colonia" id="colonia">
+                    </div>
+                	<button id="busqueda" type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+
                         <ul class="nav navbar-nav navbar-right">
                             <li>
                                 <span class="glyphicon glyphicon-user dropdown-toggle icon" data-toggle="dropdown">
@@ -104,29 +98,29 @@
                 <!--div que va contener la informacion de los inmuebles-->
                 <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 contenido">
 
-                    <!--div que va contener las paguinaciones de la paguina-->
+
+                </div>
+                                    <!--div que va contener las paguinaciones de la paguina-->
                     <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-                        <div id="example" class="col-sm-offset-1 col-md-offset-3">
+                        <div id="paginacion" class="col-sm-offset-1 col-md-offset-3">
 
                         </div>
-                    </div>
+                        <script type="text/javascript">
 
+                        </script>
+                    </div>
             </section>
             <!--Fin dela seccion de la pagina-->
-            </div>
+
         </div>
 
         <!--Footer es extraido del archivo de una de las plantillas-->
         <footer id="foot" class="row" ng-include src="'footer.html'">
 
         </footer>
-
         <!--Con este script me permite integrar plantillas a mi paguina html con angularjs-->
         <script>
             var miAPlicacion = angular.module('include',[]);
-        </script>
-        <script>
-
         </script>
 </body>
 

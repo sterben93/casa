@@ -21,7 +21,7 @@ $(document).ready(function () {
  * Realiza el reguistro del usuario a la Base de Datos de Parse
  */
 function reguistraUsuario() {
-    var texto = '{"numero":"3",'
+    var texto = '{"numero":"3",';
     $('input').each(function (idx, input) {
         texto += '"' + input.id + '":"' + input.value + '",';
     });
@@ -32,10 +32,11 @@ function reguistraUsuario() {
 }
 
 /**
- * Verifica si el reguistro del usuario se llevo acabo o no
+ * Metodo para verificar el resultado del registro
+ * @param Object JSON json
  */
 function verificaReguistro(json) {
-    if (json.mensaje == 'Registro Exitoso') {
+    if (json.mensaje === 'Registro Exitoso') {
         alert(json.mensaje);
         window.location.href = 'index.html';
         window.location.reload;

@@ -47,6 +47,7 @@ function pestanaAnuncio() {
     //$('#contenido').load("http://localhost/php/misanuncios.php");
 }
 
+
 function pestanaFavorito() {
     $pesanum.removeClass('active');
     $pesfav.addClass('active');
