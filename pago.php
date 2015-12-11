@@ -18,6 +18,7 @@
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/jquery.cookie.js"></script>
     <script type="text/javascript" src="js/progression.js"></script>
+    <script type="text/javascript" src="js/pago.js"></script>
 </head>
 
 <body>
@@ -61,20 +62,6 @@
     <!--Con este script me permite integrar plantillas a mi paguina html con angularjs-->
     <script>
         var miAPlicacion = angular.module('include',[]);
-        $("#formularioPago").progression({
-        tooltipWidth: '200',
-        tooltipPosition: 'right',
-        tooltipOffset: '50',
-        showProgressBar: true,
-        showHelper: true,
-        tooltipFontSize: '14',
-        tooltipFontColor: 'fff',
-        progressBarBackground: 'fff',
-        progressBarColor: '6EA5E1',
-        tooltipBackgroundColor: '222',
-        tooltipPadding: '10',
-        tooltipAnimate: true
-    });
     </script>
 </body>
 

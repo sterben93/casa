@@ -61,7 +61,7 @@ function pestanaNotificaciones() {
     $pesfav.removeClass('active');
     $pesnoti.addClass('active');
     $pespub.removeClass('active');
-    $('#contenido').load("http://localhost/apiParse/WSUsuario.php?numero=4&id=LLLdzjvZ44");
+    $('#contenido').load("http://localhost/apiParse/WSUsuario.php?numero=4&id="+$cookie('id'));
 }
 
 function pestanaPublica() {
