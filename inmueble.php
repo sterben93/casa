@@ -22,15 +22,52 @@
     <script type="text/javascript" src="js/jquery-1.11.2.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/jquery.cookie.js"></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript" src="http://www.parsecdn.com/js/parse-latest.js"></script>
+    <script type="text/javascript" src="js/funciones.js"></script>
     <script type="text/javascript" src="js/inmueble.js"></script>
 </head>
-
 <body>
     <!--header es extraido del archivo header de las plantillas-->
-    <header ng-include src="'header.html'">
-
+    <header>
+        <nav class="navbar navbar-default" data-spy="affix" data-offset-top="197">
+            <div class="container-fluid buscador">
+                <div class="navbar-header  ">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html">
+                        <p class="letras">Conform House</p>
+                    </a>
+                </div>
+                <div>
+                    <div class="collapse navbar-collapse" id="myNavbar">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <span class="glyphicon glyphicon-user dropdown-toggle icon" data-toggle="dropdown">
+                        <span class="caret"></span>
+                                </span>
+                                <ul class="dropdown-menu">
+                                    <li class="menu1"><a href="login.html">Entrar</a></li>
+                                    <li class="divider menu1"></li>
+                                    <li class="menu1"><a href="registro.html">Registrate</a></li>
+                                    <li id="publica" class="menu2"><a href="user.html">Publica</a></li>
+                                    <li class="divider menu2"></li>
+                                    <li id="favoritos" class="menu2"><a href="user.html">Favoritos</a></li>
+                                    <li class="divider menu2"></li>
+                                    <li id="anuncios" class="menu2"><a href="user.html">Mi Perfil</a></li>
+                                    <li class="divider menu2"></li>
+                                    <li id="notificaciones" class="menu2"><a href="user.html">Notificaciones</a></li>
+                                    <li class="divider menu2"></li>
+                                    <li class="menu2"><a href="index.html" id="cerrar">Salir</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
     </header>
     <div class="container-fluid row ">
         <div class="container col-xs-12 col-sm-9 col-md-9 col-lg-9">
@@ -99,13 +136,14 @@
 
                     </p>
                 </div>
+                <div class="col-xs-12 col-sm-offset-2 col-sm-9 col-md-9 col-lg-9">
+                    <button id="btfavorito" type="button" class="btn btn-large btn-block btn-default" style="background:#82b214" >Agregar a favoritos</button>
+                </div>
             </div>
         </div>
         <div id="contacto" class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
             <img class="img-responsive imagen" src="img/icon-email.png" alt="Chania">
-            <a href="contacto.html">
-                <button class="btn btn-primary">Contactame</button>
-            </a>
+                <button id="btContacto" class="btn btn-primary">Contactame</button>
         </div>
     </div>
 

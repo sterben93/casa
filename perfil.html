@@ -3,23 +3,41 @@
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="">
+    <meta name="description" content="Realiza la búsqueda de casa, departamento que deseas de tu gusto">
+    <meta name="author" content="Ivan Romero Garcia">
+    <meta name="keywords" content="casas, departamentos, renta, venta, pensión">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Confor House</title>
     <link rel="stylesheet" href="css/bootstrap.css">
-    <title>Document</title>
-
+    <link rel="stylesheet" href="css/progression.css">
+    <script type="text/javascript" src="js/jquery-1.11.2.js"></script>
+    <script type="text/javascript" src="js/progression.js"></script>
+    <script type="text/javascript" src="js/publica.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://www.parsecdn.com/js/parse-latest.js"></script>
+    <script type="text/javascript" src="js/parse.js"></script>
 </head>
 
 <body>
-    <div class="fileinput fileinput-new input-group" data-provides="fileinput">
-        <div class="form-control" data-trigger="fileinput"><i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span></div>
-        <span class="input-group-addon btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span>
-        <input id="files" type="file" class="file" name="files[]" multiple>
-        </span>
-        <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+    <div class="row text-center header animate-in" data-anim-type="fade-in-up">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <h3>Detalles del perfil </h3>
+            <hr/>
+        </div>
     </div>
-
+    <div class="row animate-in" data-anim-type="fade-in-up">
+        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+            <div class="contact-wrapper">
+                <h4><strong>Nombre : </strong></h4>
+                <h4 id="nombre"></h4>
+                <h4><strong>Email : </strong></h4>
+                <h4 id="email"></h4>
+                <h4><strong>Tipo de Persona : </strong></h4>
+                <h4 id="tipo"></h4>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

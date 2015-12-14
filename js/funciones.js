@@ -1,9 +1,13 @@
 /* global $cookie */
 /* global $ */
 
-var colsulta={};
-
-
+/**
+ * Funcion que me permite el intercambio de informacion mediante Objetos JSON
+ * Desde un sitio web a un WebServices
+ * @param String urlPHP
+ * @param Object JSON jsonData
+ * @param Funcio funcion
+ */
 function ajaxPHP(urlPHP,jsonData,funcion){
     $.ajax({
 			url : urlPHP,
@@ -23,6 +27,11 @@ function ajaxPHP(urlPHP,jsonData,funcion){
 	});
 }
 
+/**
+ * Realiza un consulta a la base de datos, sin necesidad de crear la consulta
+ * @param Objeto query
+ * @param int inicio
+ */
 function consulta(query, inicio) {
     query.find({
         success: function(results) {
@@ -34,6 +43,11 @@ function consulta(query, inicio) {
     });
 }
 
+/**
+ * Procesa el resultado de una consulta realizadda
+ * @param Object inmueble
+ * @param int inicio
+ */
 function procesarResultados(inmueble, inicio){
     $('.contenido').html("");
     var tamaño=inmueble.length;
@@ -47,6 +61,10 @@ function procesarResultados(inmueble, inicio){
     }
 }
 
+/**
+ * Construye el contenido de la pagina a partir de una consulta
+ * @param Object inmueble
+ */
 function construirContenido(inmueble) {
     var relation = inmueble.relation("imagenes");
     var query = relation.query();
@@ -69,6 +87,77 @@ function construirContenido(inmueble) {
     });
 }
 
+/**
+ * La funcion sesion sirve para proporcionarle al usuario las opciones de menu que puede aceder
+ * dependiendo del contenido de la cookie sesion.
+ */
+function sesion() {
+    var $menu1 = $('.menu1');
+    var $menu2 = $('.menu2');
+    if ($cookie('sesion') == undefined) {
+        $menu1.show();
+        $menu2.hide();
+    } else {
+        $menu1.hide();
+        $menu2.show();
+    }
+
+    $('#publica').click(function () { crearCookie('pub') });
+    $('#favoritos').click(function () { crearCookie('fav') });
+    $('#anuncios').click(function () { crearCookie('perf') });
+    $('#notificaciones').click(function () { crearCookie('noti') });
+    $('#cerrar').click(function () {
+        ajaxPHP('localhost/apiParse/WSUsuario.php', { numero: 2 }, cerrarSesion);
+        $menu1.show();
+        $menu2.hide();
+        $removeCookie('sesion');
+        $removeCookie('id');
+    });
+}
+
+/**
+ * Crea una cookie para decirle a la aplicacion que pestaña activar
+ * @param string bton indica que tipo de boton a sido clikeado
+ */
+function crearCookie(bton) {
+    boton[bton]();
+}
+
+/*Objeto boton que simula un switch*/
+var boton = {
+    'pub': function () {
+        $cookie('pestana', 'pub');
+        alert($cookie('pestana'));
+    },
+    'fav': function () {
+        $cookie('pestana', 'fav');
+        alert($cookie('pestana'));
+    },
+    'anun': function () {
+        $cookie('pestana', 'anun');
+        alert($cookie('pestana'));
+    },
+    'noti': function () {
+        $cookie('pestana', 'noti');
+        alert($cookie('pestana'));
+    }
+}
+
+/**
+ * La funcion Cierra la sesion del usuario actual ademas de elimniar dos cookie
+ * sesion y id del usuario
+ * @param Objeto json
+ */
+function cerrarSesion(json) {
+    if (json.mensaje === 'Fin de la sesion') {
+        $removeCookie('sesion');
+        $removeCookie('id');
+        window.location.href = "index.html";
+        window.location.reload;
+    } else {
+        alert(json.mensaje);
+    }
+}
 
 function crearPaginacion(query){
     query.count({

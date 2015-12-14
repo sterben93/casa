@@ -16,25 +16,66 @@
     <script type="text/javascript" src="js/angular.min.js"></script>
     <script type="text/javascript" src="js/angular-route.min.js"></script>
     <script type="text/javascript" src="js/jquery-1.11.2.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/funciones.js"></script>
     <script type="text/javascript" src="js/progression.js"></script>
     <script type="text/javascript" src="js/publica.js"></script>
-    <script src="js/jquery.cookie.js"></script>
-    <script src="js/pestana.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="js/pestana.js"></script>
     <script type="text/javascript" src="http://www.parsecdn.com/js/parse-latest.js"></script>
     <script type="text/javascript" src="js/parse.js"></script>
 </head>
 
 <body>
     <!-- Creacion de header mediante una plantilla  -->
-    <header ng-include src="'header.html'">
-
+    <header>
+        <nav class="navbar navbar-default" data-spy="affix" data-offset-top="197">
+            <div class="container-fluid buscador">
+                <div class="navbar-header  ">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html">
+                        <p class="letras">Conform House</p>
+                    </a>
+                </div>
+                <div>
+                    <div class="collapse navbar-collapse" id="myNavbar">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <span class="glyphicon glyphicon-user dropdown-toggle icon" data-toggle="dropdown">
+                        <span class="caret"></span>
+                                </span>
+                                <ul class="dropdown-menu">
+                                    <li class="menu1"><a href="login.html">Entrar</a></li>
+                                    <li class="divider menu1"></li>
+                                    <li class="menu1"><a href="registro.html">Registrate</a></li>
+                                    <li id="publica" class="menu2"><a href="user.html">Pública</a></li>
+                                    <li class="divider menu2"></li>
+                                    <li id="favoritos" class="menu2"><a href="user.html">Favoritos</a></li>
+                                    <li class="divider menu2"></li>
+                                    <li id="anuncios" class="menu2"><a href="user.html">Mi Perfil</a></li>
+                                    <li class="divider menu2"></li>
+                                    <li id="notificaciones" class="menu2"><a href="user.html">Notificaciones</a></li>
+                                    <li class="divider menu2"></li>
+                                    <li class="menu2"><a href="index.html" id="cerrar">Salir</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
     </header>
     <!-- Creacion de las pestañas de las opciones del usuario  -->
     <ul class="nav nav-tabs nav-justified">
-        <li id="pesanun"><a>Mis Anuncios</a></li>
+        <li id="pesperf"><a>Mi Perfil</a></li>
         <li id="pesfav"><a>Favoritos</a></li>
         <li id="pesnoti"><a>Notificaciones</a></li>
-        <li id="pespub"><a>Publica</a></li>
+        <li id="pespub"><a>Pública</a></li>
     </ul>
     <!-- El contenido es agregado por los eventos de click en sus botones correspodientes desde
      un archivo de js  -->

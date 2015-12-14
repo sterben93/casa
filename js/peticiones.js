@@ -23,14 +23,14 @@ function consultaFiltros() {
     } else {
         query.descending("createdAt");
         query.limit(limite);
-        consulta(query,inicio);
+        consulta(query, inicio);
     }
 }
 
 function consultaBusqueda() {
     var servicio = parseInt($('#servicio').val());
     var colonia = $('#colonia').val();
-    alert(servicio+" "+colonia);
+    alert(servicio + " " + colonia);
     var bandera = 0;
     var limite = 10;
     var inicio = 0;
@@ -46,11 +46,11 @@ function consultaBusqueda() {
     } else {
         query.equalTo("colonia", colonia);
     }
-    if (bandera===2) {
+    if (bandera === 2) {
         alert('No hay ningun campo lleno para realizar la busqueda');
     } else {
         query.descending("createdAt");
         query.limit(limite);
-        consulta(query,inicio);
+        consulta(query, inicio);
     }
 }

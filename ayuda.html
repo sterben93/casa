@@ -1,52 +1,56 @@
 <!DOCTYPE html>
 <html lang="es" ng-app="">
-    <head>
-        <meta charset="utf-8">
-        <meta name="description" content="Realiza la búsqueda de casa, departamento que deseas de tu gusto">
-        <meta name="author" content="Ivan Romero Garcia">
-        <meta name="keywords" content="casas, departamentos, renta, venta, pensión">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Conform House</title>
-        <link rel="stylesheet" href="css/styleindex.css">
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/style.css">
-        <script type="text/javascript" src="js/angular.min.js"></script>
-        <script type="text/javascript" src="js/angular-route.min.js"></script>
-        <script type="text/javascript" src="js/jquery-1.11.2.js"></script>
-        <script type="text/javascript" src="js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="js/jquery.cookie.js"></script>
-        <script type="text/javascript" src="js/jquery.paginate.js"></script>
-        <script type="text/javascript" src="js/funciones.js"></script>
-        <script type="text/javascript" src="js/sesion.js"></script>
-        <script type="text/javascript" src="js/peticiones.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <!--Ayuda -->
-        <link rel="stylesheet" href="ayuda/style.css">
-        <!-- Scripts -->
-        <script src="ayuda/js/jquery.min.js"></script>
-        <script src="ayuda/js/main.js"></script>
-        <!-- Fuentes de Google -->
-        <link href='//fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-        <!-- Iconos http://fontawesome.io/icons/-->
-        <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-        <!-- <link rel="stylesheet" src="ayuda/css/font-awesome.min.css"> -->
 
-    </head>
-    <body data-spy="scroll" data-target=".navbar" data-offset="50">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Realiza la búsqueda de casa, departamento que deseas de tu gusto">
+    <meta name="author" content="Ivan Romero Garcia">
+    <meta name="keywords" content="casas, departamentos, renta, venta, pensión">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Conform House</title>
+    <link rel="stylesheet" href="css/styleindex.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/angular-route.min.js"></script>
+    <script type="text/javascript" src="js/jquery-1.11.2.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="js/jquery.paginate.js"></script>
+    <script type="text/javascript" src="js/funciones.js"></script>
+    <script type="text/javascript" src="js/sesion.js"></script>
+    <script type="text/javascript" src="js/peticiones.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <!--Ayuda -->
+    <link rel="stylesheet" href="ayuda/style.css">
+    <!-- Scripts -->
+    <script src="ayuda/js/jquery.min.js"></script>
+    <script src="ayuda/js/main.js"></script>
+    <!-- Fuentes de Google -->
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <!-- Iconos http://fontawesome.io/icons/-->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" src="ayuda/css/font-awesome.min.css"> -->
 
-<!--Secion de Encabezado de la paguina-->
-        <header class="encabezado imageBac" >
-            <nav class="navbar navbar-default center" data-spy="affix" data-offset-top="197" >
-                <div class="container-fluid buscador">
-                    <div class="navbar-header  ">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="index.html" ><p class="letras">Conform House</p></a>
-                    </div>
+</head>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+
+    <!--Secion de Encabezado de la paguina-->
+    <header class="encabezado imageBac">
+        <nav class="navbar navbar-default center" data-spy="affix" data-offset-top="197">
+            <div class="container-fluid buscador">
+                <div class="navbar-header  ">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html">
+                        <p class="letras">Conform House</p>
+                    </a>
+                </div>
                 <div>
                     <div class="collapse navbar-collapse" id="myNavbar">
                         <form id="formularioBusqueda" class="navbar-form navbar-left" role="search">
@@ -81,11 +85,11 @@
                                     <li class="menu1"><a href="login.html">Entrar</a></li>
                                     <li class="divider menu1"></li>
                                     <li class="menu1"><a href="registro.html">Registrate</a></li>
-                                    <li  id="publica" class="menu2"><a href="user.html">Publica</a></li>
+                                    <li id="publica" class="menu2"><a href="user.html">Publica</a></li>
                                     <li class="divider menu2"></li>
-	                                <li  id="favoritos" class="menu2"><a href="user.html">Favoritos</a></li>
+                                    <li id="favoritos" class="menu2"><a href="user.html">Favoritos</a></li>
                                     <li class="divider menu2"></li>
-                                    <li  id="anuncios" class="menu2"><a href="user.html">Mis Anuncios</a></li>
+                                    <li id="anuncios" class="menu2"><a href="user.html">Mis Anuncios</a></li>
                                     <li class="divider menu2"></li>
                                     <li id="notificaciones" class="menu2"><a href="user.html">Notificaciones</a></li>
                                     <li class="divider menu2"></li>
@@ -95,80 +99,82 @@
                         </ul>
                     </div>
                 </div>
-                </div>
-            </nav>
-        </header>
-<!--Fin de la seccion del Encabezado de la paguina-->
+            </div>
+        </nav>
+    </header>
+    <!--Fin de la seccion del Encabezado de la paguina-->
 
-<!--Inicio de la seccion de ayuda-->
+    <!--Inicio de la seccion de ayuda-->
 
-       <div>
-            <h1>Ayuda</h1>
-            <!-- Contenedor -->
-            <ul id="accordion" class="accordion">
-               <li>
-                    <div class="link"><i class="fa fa-navicon"></i>Menu<i class="fa fa-chevron-down"></i></div>
-                    <ul class="submenu">
-                        <p>El menu contiene dos posibles opciones "Entrar" y "Registrate".<br>
-                        Mientras el usuario no este logueado este sera el menu disponible, solo cambiara
-                        cuando el usuario ingrese a la pagina.</p>
-                        <img src="ayuda/0.png">
-                    </ul>
-                </li>
-                <li>
-                    <div class="link"><i class="fa fa-book"></i>¿Como registrarse?<i class="fa fa-chevron-down"></i></div>
-                    <ul class="submenu">
-                        <p>Para registrarte debes ingresar los datos a continuación.
-                        Nombre, email, contraseña y tipo de persona, pueden ser dos, moral o física.<br>
-                        Moral: Si eres una empresa<br>
-                        Física: Si eres una persona.</p>
-                        <img src="ayuda/1.png">
-                    </ul>
-                </li>
-                <li>
-                    <div class="link"><i class="fa fa-check"></i>¿Como loguearse?<i class="fa fa-chevron-down"></i></div>
-                    <ul class="submenu">
-                        <p>Para ingresar al sitio debes proporcionar tu nombre de usuario y contraseña.</p>
-                        <img src="ayuda/2.png">
-                    </ul>
-                </li>
-                </li>
-                <li>
-                    <div class="link"><i class="fa fa-navicon"></i>Menu de usuario<i class="fa fa-chevron-down"></i></div>
-                    <ul class="submenu">
-                        <p>Una vez dentro de la pagina, tu menu cambiara al siguiente.</p>
-                        <img class="imgAlta" src="ayuda/3.png">
-                    </ul>
-                </li>
-                <li>
-                    <div class="link"><i class="fa fa-coffee"></i>¿Como publicar una casa?<i class="fa fa-chevron-down"></i></div>
-                    <ul class="submenu">
-                        <p>Para publicar una casa, dentro del menu de usuario debes de ir a "Publicar" una vez dentro
-                        tendras que ingresar todos los datos requeridos, en tipo de servicio puedes decir que vas a hacer,
-                        si esta en venta, renta, es una pension o a tratar.</p>
-                        <img src="ayuda/4.png">
-                    </ul>
-                </li>
-                <li><div class="link"><i class="fa fa-dollar"></i>¿Como comprar una casa?<i class="fa fa-chevron-down"></i></div>
-                    <ul class="submenu">
-                        <p>Si una casa te intereso, podras utilizar el boton contactar,
-                        este le enviara una notificacion al dueño para despues realizar su venta</p>
-                        <img src="ayuda/5.png">
-                    </ul>
-                </li>
-            </ul>
-       </div>
+    <div>
+        <h1>Ayuda</h1>
+        <!-- Contenedor -->
+        <ul id="accordion" class="accordion">
+            <li>
+                <div class="link"><i class="fa fa-navicon"></i>Menu<i class="fa fa-chevron-down"></i></div>
+                <ul class="submenu">
+                    <p>El menu contiene dos posibles opciones "Entrar" y "Registrate".
+                        <br> Mientras el usuario no este logueado este sera el menu disponible, solo cambiara cuando el usuario
+                        ingrese a la pagina.</p>
+                    <img src="ayuda/0.png">
+                </ul>
+            </li>
+            <li>
+                <div class="link"><i class="fa fa-book"></i>¿Como registrarse?<i class="fa fa-chevron-down"></i></div>
+                <ul class="submenu">
+                    <p>Para registrarte debes ingresar los datos a continuación. Nombre, email, contraseña y tipo de persona,
+                        pueden ser dos, moral o física.
+                        <br> Moral: Si eres una empresa
+                        <br> Física: Si eres una persona.</p>
+                    <img src="ayuda/1.png">
+                </ul>
+            </li>
+            <li>
+                <div class="link"><i class="fa fa-check"></i>¿Como loguearse?<i class="fa fa-chevron-down"></i></div>
+                <ul class="submenu">
+                    <p>Para ingresar al sitio debes proporcionar tu nombre de usuario y contraseña.</p>
+                    <img src="ayuda/2.png">
+                </ul>
+            </li>
+            </li>
+            <li>
+                <div class="link"><i class="fa fa-navicon"></i>Menu de usuario<i class="fa fa-chevron-down"></i></div>
+                <ul class="submenu">
+                    <p>Una vez dentro de la pagina, tu menu cambiara al siguiente.</p>
+                    <img class="imgAlta" src="ayuda/3.png">
+                </ul>
+            </li>
+            <li>
+                <div class="link"><i class="fa fa-coffee"></i>¿Como publicar una casa?<i class="fa fa-chevron-down"></i></div>
+                <ul class="submenu">
+                    <p>Para publicar una casa, dentro del menu de usuario debes de ir a "Publicar" una vez dentro tendras que
+                        ingresar todos los datos requeridos, en tipo de servicio puedes decir que vas a hacer, si esta en
+                        venta, renta, es una pension o a tratar.</p>
+                    <img src="ayuda/4.png">
+                </ul>
+            </li>
+            <li>
+                <div class="link"><i class="fa fa-dollar"></i>¿Como comprar una casa?<i class="fa fa-chevron-down"></i></div>
+                <ul class="submenu">
+                    <p>Si una casa te intereso, podras utilizar el boton contactar, este le enviara una notificacion al dueño
+                        para despues realizar su venta</p>
+                    <img src="ayuda/5.png">
+                </ul>
+            </li>
+        </ul>
+    </div>
 
-<!--Fin de la seccion de ayuda -->
-<!--Footer es extraido del archivo de una de las plantillas-->
-        <footer id="foot" class="row" ng-include src="'footer.html'">
+    <!--Fin de la seccion de ayuda -->
+    <!--Footer es extraido del archivo de una de las plantillas-->
+    <footer id="foot" class="row" ng-include src="'footer.html'">
 
-        </footer>
+    </footer>
 
-<!--Con este script me permite integrar plantillas a mi paguina html con angularjs-->
-        <script>
-            var miAPlicacion = angular.module('include',[]);
-        </script>
+    <!--Con este script me permite integrar plantillas a mi paguina html con angularjs-->
+    <script>
+        var miAPlicacion = angular.module('include',[]);
+    </script>
 
-    </body>
+</body>
+
 </html>

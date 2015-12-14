@@ -1,8 +1,5 @@
 /* global Parse */
 /* global $ */
-var arrayID = [];
-var inmuebleTemp;
-
 $(document).ready(inicializa);
 
 /**

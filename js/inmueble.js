@@ -6,13 +6,27 @@ $(document).ready(crearContenido);
  * Crea el contenido de la pagina Inmueble
  */
 function crearContenido() {
-    var URLactual = window.location.toString().split('=');
+    sesion();
+    var urlActual = window.location.toString().split('=');
     Parse.initialize("ve3SsAciKVt8GwhmLDCzW9rQ6EkPj8ai3pWcp3Is", "KW6EKtE5UC6cNj2RWfOyHfGKCA4B8FHG4fV0A0oq");
     var inmueble = Parse.Object.extend("Inmueble");
     var query = new Parse.Query(inmueble);
-    query.equalTo("objectId", URLactual[1]);
+    query.equalTo("objectId", urlActual[1]);
     llenarContenido(query);
-
+    $("#btContacto").click(function () {
+        if($cookie('id')==undefined){
+            alert('Por favor inicie sesion');
+        }else{
+            solicitaInmueble(urlActual[1]);
+        }
+    });
+    $("#btfavorito").click(function (){
+        if($cookie('id')==undefined){
+            alert('Por favor inicie sesion');
+        }else{
+            agregarFavorito(d);
+        }
+    })
 }
 
 /**
@@ -32,13 +46,13 @@ function llenarContenido(query) {
             $("#estacionamientos").html(objetoInm.get('numeroEstacionamientos'));
             $("#plantas").html(objetoInm.get('numeroPlantas'));
             $("#precio").html('$ ' + objetoInm.get('precio'));
-            var fecha=objetoInm.createdAt.toString().split(' ');
-            $("#fecha").html(fecha[1]+" "+fecha[2]+" "+fecha[3]);
+            var fecha = objetoInm.createdAt.toString().split(' ');
+            $("#fecha").html(fecha[1] + " " + fecha[2] + " " + fecha[3]);
             var disponible;
-            if(objetoInm.get('disponible')){
-                disponible='Si';
-            }else{
-                disponible='No';
+            if (objetoInm.get('disponible')) {
+                disponible = 'Si';
+            } else {
+                disponible = 'No';
             }
             $("#disponible").html(disponible);
             crearSlider(objetoInm);
@@ -81,4 +95,26 @@ function tipoServicios(servicio) {
     } else {
         return 'Renta';
     }
+}
+
+/**
+ * Me permite contactarme con el arrendedor
+ * @param String idInmueble
+ */
+function solicitaInmueble(idInmueble) {
+    var text = '{"numero":' + 5 + ', "idUsuario":"' + $cookie('id') + '", "idInueble":"' + idInmueble + '"}';
+    json = JSON.parse(text);
+    ajaxPHP('http://localhost/apiParse/WSUsuario.php', json, confirmarSolicitud);
+}
+
+/**
+ * Avisa el usuario del Proceso de solicitud del Inmueble
+ * @param {object} json [[Description]]
+ */
+function confirmarSolicitud(json) {
+    alert(json.mesaje);
+}
+
+function agregarFavorito(){
+
 }
