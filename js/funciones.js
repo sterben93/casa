@@ -104,7 +104,7 @@ function sesion() {
 
     $('#publica').click(function () { crearCookie('pub') });
     $('#favoritos').click(function () { crearCookie('fav') });
-    $('#anuncios').click(function () { crearCookie('perf') });
+    $('#anuncios').click(function () { crearCookie('anun') });
     $('#notificaciones').click(function () { crearCookie('noti') });
     $('#cerrar').click(function () {
         ajaxPHP('localhost/apiParse/WSUsuario.php', { numero: 2 }, cerrarSesion);

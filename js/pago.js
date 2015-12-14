@@ -15,7 +15,7 @@ $(document).ready(function () {
         tooltipAnimate: true
     });
     $('button').click(function () {
-        var bandera true;
+        var bandera = true;
         $('input').each(function (id, elem){
             if(elem.value == ""){
                 bandera=false;

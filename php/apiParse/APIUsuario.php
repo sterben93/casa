@@ -102,9 +102,7 @@ class APIUsuario {
         }
         return $user;
     }
-    public static function usuarioActual(){
-        return ParseUser::getCurrentUser();
-    }
+
     public static function reiniciarContraseña($email){
         try {
             ParseUser::requestPasswordReset($email);

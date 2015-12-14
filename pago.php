@@ -74,14 +74,14 @@
                     <img src="img/visa.png" alt="logo de visa" height="50" width="100">
                     <img src="img/mastercard.png" alt="logo de master card" height="50" width="100">
                 </p>
-                <form action="" method="POST" role="form" id="formularioPago">
+                <form id="formularioPago">
                     <div class="form-group">
                         <label for="">Número de tarjeta</label>
                         <input type="text" class="form-control" required data-progression data-helper="Se encuentra en la parte inferiror del chip de la tarjeta" required>
                         <label for="">Fecha de vencimiento</label>
                         <input type="number" class="form-control" required data-progression data-helper="Se localiza en la parte superir del Nombre del titular de la tarjeta con" required>
                         <label for="">Código de verificación de la tarjeta</label>
-                        <input type="number" class="form-control" required data-progression data-helper="En MasterCard y Visa son los tres ultimos digitos del area de firma de la parte posteriro de la trajeta" required placeholder="mm/aaaa">
+                        <input type="text" class="form-control" required data-progression data-helper="En MasterCard y Visa son los tres ultimos digitos del area de firma de la parte posteriro de la trajeta" required placeholder="mm/aaaa">
                         <label for="">Fecha de nacimiento</label>
                         <input type="text" class="form-control" required data-progression data-helper="La ley nos exige que recopilemos esta informacion" required placeholder="dd/mm/aaaa">
                     </div>

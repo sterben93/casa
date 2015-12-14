@@ -109,7 +109,7 @@ pestana = {
         $removeCookie('pestana');
         pestanaFavorito();
     },
-    'perf': function () {
+    'anun': function () {
         $removeCookie('pestana');
         pestanaPerfil();
     },

@@ -74,7 +74,9 @@ function crearSlider(inmueble) {
         success: function (results) {
             for (var i = 0; i < results.length; i++) {
                 var imagen = results[i].get("imagen");
+                if(imagen.url()!=undefined){
                 $('#imagenes').append($('<li/>').append($('<img/>', { 'src': imagen.url(), 'alt': 'Image ' + i + 1 })));
+                    }
             }
             $('.jcarousel-wrapper').append('<p class="jcarousel-pagination"></p>');
         },
@@ -102,8 +104,9 @@ function tipoServicios(servicio) {
  * @param String idInmueble
  */
 function solicitaInmueble(idInmueble) {
-    var text = '{"numero":' + 5 + ', "idUsuario":"' + $cookie('id') + '", "idInueble":"' + idInmueble + '"}';
+    var text = '{"numero":"5", "idUsuario":"' + $cookie('id') + '", "idInmueble":"' + idInmueble + '"}';
     json = JSON.parse(text);
+    alert(text);
     ajaxPHP('http://localhost/apiParse/WSUsuario.php', json, confirmarSolicitud);
 }
 
@@ -112,7 +115,7 @@ function solicitaInmueble(idInmueble) {
  * @param {object} json [[Description]]
  */
 function confirmarSolicitud(json) {
-    alert(json.mesaje);
+    alert(json.mensaje);
 }
 
 function agregarFavorito(){
