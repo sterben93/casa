@@ -19,9 +19,16 @@ function inicializa() {
 function subirDatos() {
     var Inmueble = Parse.Object.extend("Inmueble");
     var inmueble = new Inmueble();
+    var bandera = true;
     $('.datos').each(function (id, datos) {
+        if(datos.value==""){
+            bandera=false;
+        }
         if (datos.type === 'number') {
             inmueble.set(datos.id, parseInt(datos.value));
+            if(parseInt(datos.value)<0||parseInt(datos.value)>10){
+                bandera=false;
+            }
         } else if (datos.id === 'servicio') {
             inmueble.set('servicio', parseInt(datos.value));
         } else {
@@ -42,15 +49,17 @@ function subirDatos() {
             alert("Error: " + error.code + " " + error.message);
         }
     });
+    if(bandera){
     inmueble.save(null, {
         success: function (inmueble) {
             imagenesInmuebles(inmueble)
-            alert('Create new object, id: ' + inmueble.id);
+            alert('Su publicacion ya se guardo en la base de datos ');
         },
         error: function (inmueble, error) {
             alert('Failed to create new object, with error code: ' + error.message);
         }
     });
+    }
 }
 
 /**

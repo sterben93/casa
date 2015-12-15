@@ -58,7 +58,7 @@ function pestanaFavorito() {
     $pesfav.addClass('active');
     $pesnoti.removeClass('active');
     $pespub.removeClass('active');
-    //$('#contenido').load("http://localhost/php/favoritos.php");
+    $('#contenido').load("http://localhost/apiParse/WSUsuario.php?numero=8&idUsuario=" + $cookie('id'));
 }
 
 function pestanaNotificaciones() {

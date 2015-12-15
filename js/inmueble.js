@@ -24,7 +24,7 @@ function crearContenido() {
         if($cookie('id')==undefined){
             alert('Por favor inicie sesion');
         }else{
-            agregarFavorito(d);
+            agregarFavorito(urlActual[1]);
         }
     })
 }
@@ -118,6 +118,9 @@ function confirmarSolicitud(json) {
     alert(json.mensaje);
 }
 
-function agregarFavorito(){
-
+function agregarFavorito(idInmueble){
+    var text = '{"numero":"7", "idUsuario":"' + $cookie('id') + '", "idInmueble":"' + idInmueble + '"}';
+    json = JSON.parse(text);
+    alert(text);
+    ajaxPHP('http://localhost/apiParse/WSUsuario.php', json, confirmarSolicitud);
 }

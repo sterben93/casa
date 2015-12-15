@@ -20,7 +20,7 @@
 </head>
 
 <body>
-    <div id="formularioInm">
+    <form id="formularioInm">
         <legend>Reguistro del Inmueble</legend>
         <select name="servicio" id="servicio" class="datos form-control" required data-progression data-helper="Servicio que se ofrece por el inmueble">
             <option value="0">Tipo de servicio</option>
@@ -37,19 +37,19 @@
             <br/>
             <input type="text" id="direccion" placeholder="Direccion" class="datos form-control" required data-progression data-helper="Acepta datos alfanumericos">
             <br/>
-            <input type="number" id="numeroBathrooms" max="5" placeholder="Numero de Baños" class="datos form-control" required data-progression
+            <input type="number" id="numeroBathrooms" min="0" max="10" placeholder="Numero de Baños" class="datos form-control" required data-progression
             data-helper="Numero de baños que dispone del inmueble acepta datos numericos">
             <br/>
-            <input type="number" id="numeroCuartos" max="10" placeholder="Numero de Cuartos" class="datos form-control" required data-progression
+            <input type="number" id="numeroCuartos" min="0" max="10" placeholder="Numero de Cuartos" class="datos form-control" required data-progression
             data-helper="Numero de cuartos que dispone del inmueble acepta datos numericos">
             <br/>
-            <input type="number" id="numeroEstacionamientos" max="10" placeholder="Numero de Estacionamientos" class="datos form-control"
+            <input type="number" id="numeroEstacionamientos" min="0" max="10" placeholder="Numero de Estacionamientos" class="datos form-control"
             required data-progression data-helper="Numero de estacionamientos que dispone del inmueble acepta datos numericos">
             <br/>
-            <input type="number" id="numeroPlantas" max="5" placeholder="Numero de Plantas" class="datos form-control" required data-progression
+            <input type="number" id="numeroPlantas" min="0" max="10" placeholder="Numero de Plantas" class="datos form-control" required data-progression
             data-helper="Numero de pisos que dispone del inmueble acepta datos numericos">
             <br/>
-            <input type="number" id="precio" placeholder="Precio del Inmueble" class="datos form-control" required data-progression data-helper="Precio Asignado por el inmueble">
+            <input type="number" id="precio" min="0" placeholder="Precio del Inmueble" class="datos form-control" required data-progression data-helper="Precio Asignado por el inmueble">
             <br/>
             <textarea rows="20" id='descripcion' class="datos form-control" required data-progression data-helper="En este campo se describe el Inmueble">
             </textarea>
@@ -62,7 +62,7 @@
             <br/>
             <button class="btn btn-primary" id="enviar">Enviar</button>
         </div>
-    </div>
+    </form>
 </body>
 
 </html>
